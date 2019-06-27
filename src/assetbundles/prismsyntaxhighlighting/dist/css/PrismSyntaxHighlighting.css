@@ -1,0 +1,35 @@
+/**
+ * Prism Syntax Highlighting plugin for Craft CMS
+ *
+ * Prism Syntax Highlighting CSS
+ *
+ * @author    Josh Smith <me@joshsmith.dev>
+ * @copyright Copyright (c) 2019 Josh Smith <me@joshsmith.dev>
+ * @link      https://www.joshsmith.dev
+ * @package   PrismSyntaxHighlighting
+ * @since     1.0.0
+ */
+.prism-syntax-highlighter {
+	outline: none;
+}
+.prism-syntax-highlighter [contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+.prism-syntax-highlighter code {
+	display: block;
+}
+
+.prism-syntax-highlighter .token {
+	display: inline-block;
+	border: none;
+	border-radius: 0;
+	padding: 0;
+	font-size: inherit;
+	line-height: inherit;
+	text-shadow: none;
+	background: inherit;
+}
+
+.token.other{
+	color: inherit;
+}

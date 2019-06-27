@@ -1,0 +1,43 @@
+{
+    "name": "thejoshsmith/craft-prism-syntax-highlighting",
+    "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "prism syntax highlighting",
+        "syntax",
+        "highlighting"
+    ],
+    "support": {
+        "docs": "https://github.com/thejoshsmith/prism-syntax-highlighting/blob/master/README.md",
+        "issues": "https://github.com/thejoshsmith/prism-syntax-highlighting/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josh Smith <me@joshsmith.dev>",
+            "homepage": "https://www.joshsmith.dev"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "prismjs/prism": "^1.16"
+    },
+    "autoload": {
+        "psr-4": {
+          "thejoshsmith\\prismsyntaxhighlighting\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Prism Syntax Highlighting",
+        "handle": "craft-prism-syntax-highlighting",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/thejoshsmith/prism-syntax-highlighting/master/CHANGELOG.md",
+        "class": "thejoshsmith\\prismsyntaxhighlighting\\Plugin"
+    }
+}
