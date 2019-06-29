@@ -2,7 +2,25 @@
 
 Adds a new field type that provides syntax highlighting capabilities using PrismJS.
 
-![Screenshot](resources/img/plugin-logo.png)
+## Prism Syntax Highlighting Overview
+
+This plugin enables a new field type called "Prism Syntax Highlighter" within the control panel. When used in an entry, a code block will appear and you can enter highlighted code from a choice over ~170 different languages.
+
+Code blocks are fully themeable, and it includes all of Prism's defualt themes. Additional themes can also be added by configuring them in the settings area.
+
+Features:
+- Syntax Highlighting in realtime
+- Over 170 different supported syntaxes
+- Ships with 8 default themes, and supports adding custom themes
+- Line numbers
+- Configurable tab widths and editor height
+- Shortcut keys (indentation and undo/redo)
+- Support for Matrices & Supertables
+- Works with Live Preview
+
+Coming soon:
+- Redactor support. Insert code blocks within your content
+- Automatic rendering on the front end (including styles + scripts)
 
 ## Requirements
 
@@ -18,26 +36,50 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require thejoshsmith/prism-syntax-highlighting
+        composer require thejoshsmith/craft-prism-syntax-highlighting
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Prism Syntax Highlighting.
 
-## Prism Syntax Highlighting Overview
-
--Insert text here-
-
 ## Configuring Prism Syntax Highlighting
 
--Insert text here-
+General settings are configurable from the plugin settings screen, and the following defaults can be set:
+
+- Theme
+- Syntax
+- Editor Height
+- Tab Width
+- Display Line Numbers
+- Custom Theme Directory
+
+### Themes
+
+Themes are configurable using the dropdown select menu. To customize what themes appear in the select menu, the plugin config file must be edited. Copy the `prismsyntaxhighlighter.example.php` file to `config/prismsyntaxhighlighter.php` and open it up.
+
+1. Edit the `themes` array key
+2. Setting the array to `['*']` will load all default themes
+3. You can show specific themes by listing the style handles e.g. `['prism-coy','prism-dark']`
+4. Custom themes are specified by adding a key => value entry e.g. `['prism-my-custom-theme' => 'My Custom Title']`
+
+```
+'themes' => ['*', 'prism-my-custom-theme' => 'My Custom Theme']
+```
+
+Note: Custom themes must follow these rules:
+
+- Exist in a directory specified on the plugin settings screen
+- Be named after the handle. E.g `prism-my-custom-theme.css`
+- Be namespaced after the theme name e.g. `.prism-my-custom-theme .token { color: #000 }` - This is to prevent conflicts with Craft's styles
+
 
 ## Using Prism Syntax Highlighting
 
--Insert text here-
+Simply create a new field type of "Prism Syntax Highlighting", assign to a section and start writing!
 
 ## Prism Syntax Highlighting Roadmap
 
 Some things to do, and ideas for potential features:
 
-* Release it
+* Create a Redactor plugin that allows you to write code inline of content.
+* Create a Twig function that auto-renders the same style'd code block on the front end, as the control panel.
 
 Brought to you by [Josh Smith <me@joshsmith.dev>](https://www.joshsmith.dev)
