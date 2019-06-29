@@ -70,12 +70,12 @@ class Settings extends Model
 
     public function getEditorThemes()
     {
-       return Plugin::$plugin->prismService->getEditorThemes($this->customThemesDir);
+       return Plugin::$plugin->prismService->getDefinitions('themes');
     }
 
     public function getEditorLanguages()
     {
-        return Plugin::$plugin->prismService->getEditorLanguages();
+        return Plugin::$plugin->prismService->getDefinitions('languages');
     }
 
     /**

@@ -14,8 +14,6 @@ use Craft;
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\PrismSyntaxHighlighting\PrismJsAsset;
-
 /**
  * @author    Josh Smith <me@joshsmith.dev>
  * @package   PrismSyntaxHighlighting
@@ -34,16 +32,23 @@ class PrismSyntaxHighlightingAsset extends AssetBundle
         $this->sourcePath = "@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist";
 
         $this->depends = [
-            CpAsset::class,
-            PrismJsAsset::class,
+            CpAsset::class
         ];
 
         $this->js = [
+
+            // Core Prism Scripts
+            'js/prism/components/prism-core.min.js',
+            'js/prism/components/prism-clike.min.js',
+
+            // Keypress management
             'js/bililiteRange/bililiteRange.js',
             'js/bililiteRange/bililiteRange.fancytext.js',
             'js/bililiteRange/bililiteRange.undo.js',
             'js/bililiteRange/bililiteRange.util.js',
             'js/bililiteRange/jquery.sendkeys.js',
+
+            // Main Script
             'js/PrismSyntaxHighlighting.js'
         ];
 

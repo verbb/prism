@@ -12,7 +12,6 @@ namespace thejoshsmith\prismsyntaxhighlighting\fields;
 
 use thejoshsmith\prismsyntaxhighlighting\Plugin;
 use thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting\PrismSyntaxHighlightingAsset;
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\PrismSyntaxHighlighting\PrismJsAsset;
 
 use Craft;
 use craft\base\ElementInterface;
@@ -159,17 +158,15 @@ class PrismSyntaxHighlightingField extends Field
         $prismFilesService = Plugin::$plugin->prismFilesService;
 
         // Load asset bundles
-        $prismJsAsset = Craft::$app->getView()->registerAssetBundle(PrismJsAsset::class);
+        $prismSyntaxHighlightingAsset = Craft::$app->getView()->registerAssetBundle(PrismSyntaxHighlightingAsset::class);
         $themeAssetBundle = $prismFilesService->registerEditorThemeAssetBundle($this->editorThemeFile);
         $languageAssetBundle = $prismFilesService->registerEditorLanguageAssetBundle();
 
         // Register the line numbers plugin js and css
         if( $this->editorLineNumbers === '1' ){
-            $prismJsAsset->js[] = 'plugins/line-numbers/prism-line-numbers.min.js';
-            $prismJsAsset->css[] = 'plugins/line-numbers/prism-line-numbers.css';
+            $prismSyntaxHighlightingAsset->js[] = 'js/prism/plugins/line-numbers/prism-line-numbers.min.js';
+            $prismSyntaxHighlightingAsset->css[] = 'js/prism/plugins/line-numbers/prism-line-numbers.css';
         }
-
-        Craft::$app->getView()->registerAssetBundle(PrismSyntaxHighlightingAsset::class);
 
         // Get our id and namespace
         $id = Craft::$app->getView()->formatInputId($this->handle);
@@ -181,7 +178,8 @@ class PrismSyntaxHighlightingField extends Field
             'name' => $this->handle,
             'namespace' => $namespacedId,
             'prefix' => Craft::$app->getView()->namespaceInputId(''),
-            ];
+        ];
+
         $jsonVars = Json::encode($jsonVars);
         Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').PrismSyntaxHighlightingField(" . $jsonVars . ");");
 
@@ -197,9 +195,14 @@ class PrismSyntaxHighlightingField extends Field
                 'editorLineNumbers' => $this->editorLineNumbers,
                 'editorLanguageClass' => $this->getLanguageClass(),
                 'editorHeight' => $this->editorHeight,
-                'editorTabWidth' => $this->editorTabWidth,
+                'editorTabWidth' => $this->editorTabWidth
             ]
         );
+    }
+
+    public function getThemeName()
+    {
+      return substr($this->editorTheme, 0 , (strpos($this->editorTheme, ".")));
     }
 
     protected function getLanguageClass()

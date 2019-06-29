@@ -24,8 +24,7 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1",
-        "prismjs/prism": "^1.16"
+        "craftcms/cms": "^3.0.0-RC1"
     },
     "autoload": {
         "psr-4": {
@@ -39,5 +38,8 @@
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/thejoshsmith/prism-syntax-highlighting/master/CHANGELOG.md",
         "class": "thejoshsmith\\prismsyntaxhighlighting\\Plugin"
+    },
+    "require-dev": {
+        "prismjs/prism": "^1.16"
     }
 }

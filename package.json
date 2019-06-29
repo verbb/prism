@@ -1,0 +1,38 @@
+{
+  "name": "craft-prism-syntax-highlighting",
+  "version": "1.0.0",
+  "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-wrap": "^0.1.0",
+    "uglifycss": "0.0.29",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
+  },
+  "scripts": {
+    "dev": "webpack --config webpack.config.js --mode=development",
+    "build": "webpack --config webpack.config.js --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejoshsmith/craft-prism-syntax-highlighting.git"
+  },
+  "keywords": [
+    "Craft",
+    "CMS",
+    "PrismJS",
+    "Syntax",
+    "Highlighting"
+  ],
+  "author": "Josh Smith <me@joshsmith.dev>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thejoshsmith/craft-prism-syntax-highlighting/issues"
+  },
+  "homepage": "https://github.com/thejoshsmith/craft-prism-syntax-highlighting#readme",
+  "dependencies": {}
+}

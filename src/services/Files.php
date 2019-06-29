@@ -24,20 +24,8 @@ use thejoshsmith\prismsyntaxhighlighting\Plugin;
  */
 class Files extends Component
 {
-    const PRISM_THEMES_DIR = '@prismjs/prism/themes';
-    const PRISM_LANGUAGES_DIR = '@prismjs/prism/components';
-
-    // public function getBaseLanguagesPaths()
-    // {
-    //     try {
-    //         $baseFiles = $this->getEditorFiles(self::PRISM_LANGUAGES_DIR, ['only'=>['*.min.js']]);
-    //     } catch (\yii\base\InvalidArgumentException $iae) {
-    //         Craft::$app->getSession()->setError(Craft::t('app', 'Couldn’t load files in \''.self::PRISM_LANGUAGES_DIR.'\'.'));
-    //         $baseFiles = [];
-    //     }
-
-    //     return $baseFiles;
-    // }
+    const PRISM_THEMES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/css/prism/themes';
+    const PRISM_LANGUAGES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/js/prism/components';
 
     public function getEditorFile($filename, $dir,  $customDir = '')
     {
@@ -68,17 +56,6 @@ class Files extends Component
         $themeAssetBundle->publish($am);
 
         return $themeAssetBundle;
-
-        // $file = $this->getEditorFile($filename, self::PRISM_THEMES_DIR, $customThemesDir);
-        // $assetBundle = $this->getEditorAssetBundle($filename, $file);
-
-        // if( is_a($assetBundle, 'thejoshsmith\\prismsyntaxhighlighting\\assetbundles\\PrismSyntaxHighlighting\\PrismJsAsset') ){
-        //     $assetBundle->css[] = 'themes/'.$filename;
-        // } else {
-        //     $assetBundle->css[] = $filename;
-        // }
-
-        // return $assetBundle;
     }
 
     public function registerEditorLanguageAssetBundle()
@@ -98,22 +75,6 @@ class Files extends Component
 
         return $assetBundle;
     }
-
-    // protected function getEditorAssetBundle($filename, $foundFileName)
-    // {
-    //     $replacedFile = str_replace(Craft::getAlias('@webroot'), '', $foundFileName);
-    //     $isPublicFile = $replacedFile !== $foundFileName;
-
-    //     if( $isPublicFile ){
-    //         $assetBundle = Craft::$app->getView()->registerAssetBundle(AssetBundle::class);
-    //         $basePath = str_replace($filename, '', $replacedFile);
-    //         $assetBundle->baseUrl = $basePath;
-    //     } else {
-    //         $assetBundle = Craft::$app->getView()->registerAssetBundle(PrismJsAsset::class);
-    //     }
-
-    //     return $assetBundle;
-    // }
 
     protected function parsePrismName($name)
     {

@@ -64,8 +64,6 @@ class Plugin extends CraftPlugin
         parent::init();
         self::$plugin = $this;
 
-        \Yii::setAlias('@prismjs/prism', '../vendor/prismjs/prism/');
-
         Craft::$app->view->registerTwigExtension(new PrismSyntaxHighlightingTwigExtension());
 
         Event::on(
