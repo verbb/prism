@@ -7,12 +7,12 @@ Adds a new field type that provides syntax highlighting capabilities using Prism
 
 ## Prism Syntax Highlighting Overview
 
-This plugin enables a new field type called "Prism Syntax Highlighter" within the control panel. When used in an entry, a code block will appear and you can enter highlighted code from a choice over ~170 different languages.
+This plugin enables a new field type called "Prism Syntax Highlighter" within the control panel. When used in an entry, a code block will appear and you can enter highlighted text from a choice of over ~170 different languages.
 
-Code blocks are fully themeable, and it includes all of Prism's defualt themes. Additional themes can also be added by configuring them in the settings area.
+Code blocks are fully themeable, and it includes all of Prism's default themes. Additional themes can also be added by configuring them in the settings area. You can even have multiple themes and languages running at once!
 
 Features:
-- Syntax Highlighting in realtime
+- Syntax highlighting in realtime
 - Over 170 different supported syntaxes
 - Ships with 8 default themes, and supports adding custom themes
 - Line numbers
@@ -60,7 +60,7 @@ General settings are configurable from the plugin settings screen, and the follo
 
 ### Themes
 
-Themes are configurable using the dropdown select menu. To customize what themes appear in the select menu, the plugin config file must be edited. Copy the `prismsyntaxhighlighter.example.php` file to `config/prismsyntaxhighlighter.php` and open it up.
+Themes are configurable using the dropdown select menu. To customize which themes appear in the select menu, the plugin config file must be edited. Copy the `vendor/thejoshsmith/craft-prism-syntax-highlighter/src/config/prismsyntaxhighlighter.example.php` file to `config/prismsyntaxhighlighter.php` and open it up.
 
 1. Edit the `themes` array key
 2. Setting the array to `['*']` will load all default themes
@@ -68,7 +68,7 @@ Themes are configurable using the dropdown select menu. To customize what themes
 4. Custom themes are specified by adding a key => value entry e.g. `['prism-my-custom-theme' => 'My Custom Title']`
 
 ```
-'themes' => ['*', 'prism-my-custom-theme' => 'My Custom Theme']
+'themes' => ['*', 'prism-my-custom-theme' => 'My Custom Title']
 ```
 
 Note: Custom themes must follow these rules:
@@ -77,9 +77,9 @@ Note: Custom themes must follow these rules:
 - Be named after the handle. E.g `prism-my-custom-theme.css`
 - Be namespaced after the theme name e.g. `.prism-my-custom-theme .token { color: #000 }` - This is to prevent conflicts with Craft's styles
 
-### Syntax
+### Languages
 
-Syntaxes are configurable in the same way as themes. Use `['*']` to show all 177 languages, or just list the ones you'd like to show in the config. Custom languages aren't supported at this time, but may be in the future. 
+Languages are configurable in the same way as themes. Use `['*']` to show all 177 languages, or just list the ones you'd like to show in the config. Custom languages aren't supported at this time, but may be in the future. 
 
 
 ## Using Prism Syntax Highlighting
