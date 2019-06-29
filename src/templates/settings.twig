@@ -17,64 +17,64 @@
 
 {% do view.registerAssetBundle("thejoshsmith\\prismsyntaxhighlighting\\assetbundles\\prismsyntaxhighlighting\\PrismSyntaxHighlightingAsset") %}
 
-	<h2>{{ "General Settings"|t('craft-prism-syntax-highlighting') }}</h2>
+    <h2>{{ "General Settings"|t('craft-prism-syntax-highlighting') }}</h2>
     <p>{{"Configure the default syntax highlighting options"|t('craft-prism-syntax-highlighting')}}</p>
 
     {{ forms.selectField({
-	    label: 'Theme',
-	    instructions: 'Choose an editor theme.',
-	    id: 'editorTheme',
-	    name: 'editorTheme',
-	    value:settings['editorTheme'],
-	    options: settings.getEditorThemes()})
-	}}
+        label: 'Theme',
+        instructions: 'Choose an editor theme.',
+        id: 'editorTheme',
+        name: 'editorTheme',
+        value:settings['editorTheme'],
+        options: settings.getEditorThemes()})
+    }}
 
-	{{ forms.selectField({
-	    label: 'Syntax',
-	    instructions: 'Choose a default syntax to highlight text with.',
-	    id: 'editorLanguage',
-	    name: 'editorLanguage',
-	    value:settings['editorLanguage'],
-	    options: settings.getEditorLanguages()})
-	}}
+    {{ forms.selectField({
+        label: 'Syntax',
+        instructions: 'Choose a default syntax to highlight text with.',
+        id: 'editorLanguage',
+        name: 'editorLanguage',
+        value:settings['editorLanguage'],
+        options: settings.getEditorLanguages()})
+    }}
 
-	{{ forms.textField({
-	    label: 'Height',
-	    instructions: 'Set the default number of rows the editor will be displayed at.',
-	    id: 'editorHeight',
-	    name: 'editorHeight',
-	    value: settings['editorHeight']})
-	}}
+    {{ forms.textField({
+        label: 'Height',
+        instructions: 'Set the default number of rows the editor will be displayed at.',
+        id: 'editorHeight',
+        name: 'editorHeight',
+        value: settings['editorHeight']})
+    }}
 
-	{{ forms.textField({
-	    label: 'Tab Width',
-	    instructions: 'Set the tab width. This uses the experimental CSS property `tab-size`.',
-	    id: 'editorTabWidth',
-	    name: 'editorTabWidth',
-	    value: settings['editorTabWidth']})
-	}}
+    {{ forms.textField({
+        label: 'Tab Width',
+        instructions: 'Set the tab width. This uses the experimental CSS property `tab-size`.',
+        id: 'editorTabWidth',
+        name: 'editorTabWidth',
+        value: settings['editorTabWidth']})
+    }}
 
-	{{ forms.lightswitchField({
-	    label: 'Line Numbers',
-	    instructions: 'Choose whether line numbers are displayed or not.',
-	    id: 'editorLineNumbers',
-	    name: 'editorLineNumbers',
-		on: settings['editorLineNumbers']})
-	}}
-	<hr>
-	<h2>{{ "Custom Settings"|t('craft-prism-syntax-highlighting') }}</h2>
-	<p>Set a directory path for your custom CSS. Files will be automatically parsed on save and then be selectable from the theme dropdown.</p>
+    {{ forms.lightswitchField({
+        label: 'Line Numbers',
+        instructions: 'Choose whether line numbers are displayed or not.',
+        id: 'editorLineNumbers',
+        name: 'editorLineNumbers',
+        on: settings['editorLineNumbers']})
+    }}
+    <hr>
+    <h2>{{ "Custom Settings"|t('craft-prism-syntax-highlighting') }}</h2>
+    <p>Set a directory path for your custom CSS. Files will be automatically parsed on save and then be selectable from the theme dropdown.</p>
 
-	{{ forms.autosuggestField({
-	    label: "Theme Directory"|t('craft-prism-syntax-highlighting'),
-	    instructions: "The path to the theme directory where your custom CSS files are located."|t('craft-prism-syntax-highlighting'),
-	    id: 'customThemesDir',
-	    class: 'ltr',
-	    name: 'customThemesDir',
-	    suggestEnvVars: true,
-	    suggestAliases: true,
-	    value: settings['customThemesDir'],
-	    errors: settings['customThemesDir'],
-	    required: true,
-	    placeholder: "/path/to/css/folder"|t('craft-prism-syntax-highlighting')
-	}) }}
+    {{ forms.autosuggestField({
+        label: "Theme Directory"|t('craft-prism-syntax-highlighting'),
+        instructions: "The path to the theme directory where your custom CSS files are located."|t('craft-prism-syntax-highlighting'),
+        id: 'customThemesDir',
+        class: 'ltr',
+        name: 'customThemesDir',
+        suggestEnvVars: true,
+        suggestAliases: true,
+        value: settings['customThemesDir'],
+        errors: settings['customThemesDir'],
+        required: true,
+        placeholder: "/path/to/css/folder"|t('craft-prism-syntax-highlighting')
+    }) }}
