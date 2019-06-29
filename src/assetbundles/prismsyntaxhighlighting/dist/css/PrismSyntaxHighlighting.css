@@ -19,7 +19,7 @@
 	display: block;
 }
 .prism-syntax-highlighter .token {
-	display: inline-block;
+	display: inline;
 	border: none;
 	border-radius: 0;
 	padding: 0;
@@ -28,4 +28,8 @@
 	text-shadow: none;
 	background: transparent;
   color: inherit;
+}
+
+pre[class*="language-"].prism-syntax-highlighter.line-numbers {
+	padding-left: 3.8em;
 }
