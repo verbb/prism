@@ -129,6 +129,13 @@ class PrismSyntaxHighlightingField extends Field
     public function getSettingsHtml()
     {
         $settings = Plugin::$plugin->getSettings();
+
+        // Allow the lightswitch to use defaults if it's a new field.
+        // It's set to a boolean by default, so we need to nullify it.
+        if( $this->id === null ){
+            $this->editorLineNumbers = null;
+        }
+
         // Render the settings template
         return Craft::$app->getView()->renderTemplate(
             'craft-prism-syntax-highlighting/_components/fields/PrismSyntaxHighlightingField_settings',

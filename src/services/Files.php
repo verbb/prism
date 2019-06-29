@@ -87,7 +87,6 @@ class Files extends Component
     public function registerEditorLanguageAssetBundle(array $files)
     {
         $am = Craft::$app->getAssetManager();
-        $prismService = Plugin::$plugin->prismService;
 
         $assetBundle = Craft::$app->getView()->registerAssetBundle(PrismJsLanguageAsset::class);
         $assetBundle->sourcePath = self::PRISM_LANGUAGES_DIR;

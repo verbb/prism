@@ -56,5 +56,5 @@
     instructions: 'Choose whether line numbers are displayed or not.',
     id: 'editorLineNumbers',
     name: 'editorLineNumbers',
-	on: field['editorLineNumbers'] is empty ? defaults['editorLineNumbers'] : field['editorLineNumbers']})
+	on: field['editorLineNumbers'] is null ? defaults['editorLineNumbers'] : field['editorLineNumbers']})
 }}
