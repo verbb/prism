@@ -1,6 +1,9 @@
+![Icon](resources/img/icon.png?raw=true "Icon") 
 # Prism Syntax Highlighting plugin for Craft CMS 3.x
 
 Adds a new field type that provides syntax highlighting capabilities using PrismJS.
+
+![Themes](resources/img/themes_demo_1.png?raw=true "Themes") 
 
 ## Prism Syntax Highlighting Overview
 
@@ -21,6 +24,8 @@ Features:
 Coming soon:
 - Redactor support. Insert code blocks within your content
 - Automatic rendering on the front end (including styles + scripts)
+
+![Twig](resources/img/twig.png?raw=true "Twig")
 
 ## Requirements
 
@@ -51,6 +56,8 @@ General settings are configurable from the plugin settings screen, and the follo
 - Display Line Numbers
 - Custom Theme Directory
 
+![Settings](resources/img/settings.png?raw=true "Settings")
+
 ### Themes
 
 Themes are configurable using the dropdown select menu. To customize what themes appear in the select menu, the plugin config file must be edited. Copy the `prismsyntaxhighlighter.example.php` file to `config/prismsyntaxhighlighter.php` and open it up.
@@ -70,6 +77,10 @@ Note: Custom themes must follow these rules:
 - Be named after the handle. E.g `prism-my-custom-theme.css`
 - Be namespaced after the theme name e.g. `.prism-my-custom-theme .token { color: #000 }` - This is to prevent conflicts with Craft's styles
 
+### Syntax
+
+Syntaxes are configurable in the same way as themes. Use `['*']` to show all 177 languages, or just list the ones you'd like to show in the config. Custom languages aren't supported at this time, but may be in the future. 
+
 
 ## Using Prism Syntax Highlighting
 
@@ -79,6 +90,7 @@ Simply create a new field type of "Prism Syntax Highlighting", assign to a secti
 
 Some things to do, and ideas for potential features:
 
+* Add support for custom languages.
 * Create a Redactor plugin that allows you to write code inline of content.
 * Create a Twig function that auto-renders the same style'd code block on the front end, as the control panel.
 
