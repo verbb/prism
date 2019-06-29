@@ -28,7 +28,7 @@ module.exports = {
     new CopyPlugin([
       {
         from: path.resolve(__dirname, 'vendor/prismjs/prism/themes'),
-        to: path.resolve(__dirname, 'src/assetbundles/prismsyntaxhighlighting/dist/css/prism/themes/[name].min.[ext]'),
+        to: path.resolve(__dirname, 'src/assetbundles/prismsyntaxhighlighting/dist/css/prism/themes/[name].[ext]'),
         transform: function(fileContent, filePath) {
           let transformedCss = CssWrap(fileContent.toString(), {
             selector: `.${path.parse(filePath).name}`
@@ -43,7 +43,7 @@ module.exports = {
       {
         from: path.resolve(__dirname, 'vendor/prismjs/prism/components'),
         to: path.resolve(__dirname, 'src/assetbundles/prismsyntaxhighlighting/dist/js/prism/components'),
-        test: /\.min\.js$/
+        ignore: ['!*.min.js']
       },
     ]),
 
@@ -52,7 +52,7 @@ module.exports = {
       {
         from: path.resolve(__dirname, 'vendor/prismjs/prism/plugins'),
         to: path.resolve(__dirname, 'src/assetbundles/prismsyntaxhighlighting/dist/js/prism/plugins'),
-        test: /\.min\.js$/
+        ignore: ['!*.{min.js,css}']
       },
     ]),
 
@@ -61,7 +61,6 @@ module.exports = {
       {
         from: path.resolve(__dirname, 'vendor/prismjs/prism/components.json'),
         to: path.resolve(__dirname, 'src/assetbundles/prismsyntaxhighlighting/dist/js/prism/components.json'),
-        test: /\.min\.js$/
       },
     ]),
   ],
