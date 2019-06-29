@@ -49,6 +49,11 @@ class PrismSyntaxHighlightingField extends Field
     /**
      * @var string
      */
+    public $editorLanguageFiles = [];
+
+    /**
+     * @var string
+     */
     public $editorHeight = '4';
 
     /**
@@ -134,17 +139,39 @@ class PrismSyntaxHighlightingField extends Field
         );
     }
 
+    /**
+     * Resolves filepaths for this field's themes and languages
+     * It's more efficient to do this here, rather than dynamically processing on load of each field
+     *
+     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @param  bool   $isNew
+     * @return void
+     */
     public function beforeSave(bool $isNew): bool
     {
+        $prismService = Plugin::$plugin->prismService;
         $prismFilesService = Plugin::$plugin->prismFilesService;
         $prismSettings = Plugin::$plugin->getSettings();
 
         // Store the fully qualified path
         $this->editorThemeFile = $prismFilesService->getEditorFile(
-            $this->editorTheme,
+            $this->editorTheme.'.css', // Ok to hardcode here, it's the only place it's used.
             $prismFilesService::PRISM_THEMES_DIR,
             $prismSettings->customThemesDir
         );
+
+        // Load the language requirements
+        $editorLanguageFileRequirements = $prismService->getLanguageDefinitionRequirements($this->editorLanguage);
+        $editorLanguageFileDefinitions = array_merge($editorLanguageFileRequirements, [$this->editorLanguage]);
+
+        // Loop all language requirements and resolve the filepaths
+        foreach ($editorLanguageFileDefinitions as $file) {
+            $filename = 'prism-'.$file.'.min.js'; // Ok to hardcode here, it's the only place it's used.
+            $this->editorLanguageFiles[] = $prismFilesService->getEditorFile(
+                $filename,
+                $prismFilesService::PRISM_LANGUAGES_DIR
+            );
+        }
 
         return parent::beforeSave($isNew);
     }
@@ -160,7 +187,7 @@ class PrismSyntaxHighlightingField extends Field
         // Load asset bundles
         $prismSyntaxHighlightingAsset = Craft::$app->getView()->registerAssetBundle(PrismSyntaxHighlightingAsset::class);
         $themeAssetBundle = $prismFilesService->registerEditorThemeAssetBundle($this->editorThemeFile);
-        $languageAssetBundle = $prismFilesService->registerEditorLanguageAssetBundle();
+        $languageAssetBundle = $prismFilesService->registerEditorLanguageAssetBundle($this->editorLanguageFiles);
 
         // Register the line numbers plugin js and css
         if( $this->editorLineNumbers === '1' ){
@@ -202,12 +229,11 @@ class PrismSyntaxHighlightingField extends Field
 
     public function getThemeName()
     {
-      return substr($this->editorTheme, 0 , (strpos($this->editorTheme, ".")));
+        return $this->editorTheme;
     }
 
     protected function getLanguageClass()
     {
-        preg_match('/^prism-([\w]+)/', $this->editorLanguage, $matches);
-        return 'language-'.$matches[1];
+        return 'language-'.$this->editorLanguage;
     }
 }

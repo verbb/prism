@@ -58,7 +58,7 @@ class Files extends Component
         return $themeAssetBundle;
     }
 
-    public function registerEditorLanguageAssetBundle()
+    public function registerEditorLanguageAssetBundle(array $files)
     {
         $am = Craft::$app->getAssetManager();
         $prismService = Plugin::$plugin->prismService;
@@ -66,8 +66,8 @@ class Files extends Component
         $assetBundle = Craft::$app->getView()->registerAssetBundle(PrismJsLanguageAsset::class);
         $assetBundle->sourcePath = self::PRISM_LANGUAGES_DIR;
 
-        foreach ($prismService->getLangConfig() as $file => $displayName) {
-            $assetBundle->js[] = $file.'.min.js';
+        foreach ($files as $filepath) {
+            $assetBundle->js[] = basename($filepath);
         }
 
         $assetBundle->init();

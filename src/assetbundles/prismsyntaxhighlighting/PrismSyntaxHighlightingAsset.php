@@ -39,7 +39,6 @@ class PrismSyntaxHighlightingAsset extends AssetBundle
 
             // Core Prism Scripts
             'js/prism/components/prism-core.min.js',
-            'js/prism/components/prism-clike.min.js',
 
             // Keypress management
             'js/bililiteRange/bililiteRange.js',

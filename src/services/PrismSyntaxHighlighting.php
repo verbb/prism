@@ -44,23 +44,6 @@ class PrismSyntaxHighlighting extends Component
 	 */
 	protected $config = [];
 
-	public function getEditorThemes()
-    {
-    	// $prismFilesService = Plugin::$plugin->prismFilesService;
-        return $this->getThemeDefinitions();
-
-        // $regexp = '/(\.min)?\.css/';
-        // $baseFiles = $prismFilesService->getFiles($prismFilesService::PRISM_THEMES_DIR, ['only'=>['*.min.css']], $regexp);
-        // $customFiles = (empty($customThemesDir) ? [] : $prismFilesService->getFiles($customThemesDir, [], $regexp));
-
-        // return array_merge($baseFiles, $customFiles);
-    }
-
-    public function getEditorLanguages()
-    {
-    	return $this->getLanguageDefinitions();
-    }
-
     /**
      * Returns parsed Prism definitions for the given type
      *
@@ -87,6 +70,15 @@ class PrismSyntaxHighlighting extends Component
         return $this->parseDefinitions($config, $definitions);
     }
 
+    /**
+     * Returns the prism syntax highlighting config
+     * Optionally returns a segment of the config, specified by a key
+     * User config settings are automatically merged into the default config
+     *
+     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @param  string $key Key of a segment to return
+     * @return array       Config array
+     */
     public function getConfig($key = '')
     {
     	if( empty($this->config) ){
@@ -112,7 +104,7 @@ class PrismSyntaxHighlighting extends Component
             try {
                 $this->prismDefinitions = $this->loadPrimDefinitions();
             } catch (\Exception $e) {
-                echo '<pre> $e->getMessage(): '; print_r($e->getMessage()); echo '</pre>'; die(); // Todo: handle the error
+                return [];
             }
         }
 
@@ -120,6 +112,27 @@ class PrismSyntaxHighlighting extends Component
         if( property_exists($this->prismDefinitions, $key) ) return $this->prismDefinitions->{$key};
 
         return [];
+    }
+
+    public function getLanguageDefinitionRequirements(string $definition = '', &$definitions = [])
+    {
+        $languagesDefinitions = $this->getPrismDefinitions('languages');
+        $languageDefinitions = $languagesDefinitions->$definition ?? [];
+        $requirements = $languageDefinitions->require ?? [];
+
+        // Add the definition to the array
+        $definitions[] = $definition;
+
+        if( empty($requirements) ) return $definitions;
+        if( is_string($requirements) ) $requirements = explode(',', $requirements);
+
+        // Recursively parse out other requirements
+        foreach ($requirements as $requirement) {
+            $this->getLanguageDefinitionRequirements($requirement, $definitions);
+        }
+
+        // Load dependencies in reverse order
+        return array_reverse($definitions);
     }
 
     protected function loadPrimDefinitions()
