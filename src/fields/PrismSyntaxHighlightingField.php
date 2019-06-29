@@ -143,7 +143,7 @@ class PrismSyntaxHighlightingField extends Field
      * Resolves filepaths for this field's themes and languages
      * It's more efficient to do this here, rather than dynamically processing on load of each field
      *
-     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @author Josh Smith <me@joshsmith.dev>
      * @param  bool   $isNew
      * @return void
      */

@@ -68,11 +68,30 @@ class Settings extends Model
     // Public Methods
     // =========================================================================
 
+    /**
+     * Returns an array of editor themes for the twig templates
+     * @author Josh Smith <me@joshsmith.dev>
+     * @return array
+     */
     public function getEditorThemes()
     {
-       return Plugin::$plugin->prismService->getDefinitions('themes');
+        $userThemes = [];
+        $themes = Plugin::$plugin->prismService->getDefinitions('themes');
+
+        if( !empty($this->customThemesDir) ){
+            $prismConfig = Plugin::$plugin->prismService->getConfig('themes');
+            $userThemes = array_diff_key($prismConfig, $themes);
+            $userThemes = Plugin::$plugin->prismService->parseCustomThemeDefinitions($userThemes);
+        }
+
+        return array_merge($themes, $userThemes);
     }
 
+    /**
+     * Returns an array of editor languages for the twig templates
+     * @author Josh Smith <me@joshsmith.dev>
+     * @return array
+     */
     public function getEditorLanguages()
     {
         return Plugin::$plugin->prismService->getDefinitions('languages');

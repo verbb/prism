@@ -1,6 +1,6 @@
 <?php
 /**
- * Prism Syntax Highlighting
+ * Prism Syntax Highlighting - Files Service
  *
  * @link      https://www.joshsmith.dev
  * @copyright Copyright (c) 2019 Josh Smith
@@ -24,10 +24,24 @@ use thejoshsmith\prismsyntaxhighlighting\Plugin;
  */
 class Files extends Component
 {
+    /**
+     * Constant filepaths
+     * @var string
+     */
     const PRISM_THEMES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/css/prism/themes';
     const PRISM_LANGUAGES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/js/prism/components';
 
-    public function getEditorFile($filename, $dir,  $customDir = '')
+    /**
+     * Returns a fully qualified filepath for the passed filename
+     * Optionally searches in a custom specified directory (for user files)
+     *
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $filename
+     * @param  string $dir
+     * @param  string $customDir
+     * @return string
+     */
+    public function getEditorFile(string $filename, string $dir,  string $customDir = ''): string
     {
         // Define a file filter
         $filter = function($file) use($filename){ return basename($file) === $filename; };
@@ -45,7 +59,13 @@ class Files extends Component
         return $customFiles[0];
     }
 
-    public function registerEditorThemeAssetBundle($filename)
+    /**
+     * Retunrs a theme asset bundle
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $filename
+     * @return AssetBundle
+     */
+    public function registerEditorThemeAssetBundle(string $filename)
     {
         $am = Craft::$app->getAssetManager();
 
@@ -58,6 +78,12 @@ class Files extends Component
         return $themeAssetBundle;
     }
 
+    /**
+     * Retunrs a languages asset bundle
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  array $files
+     * @return AssetBundle
+     */
     public function registerEditorLanguageAssetBundle(array $files)
     {
         $am = Craft::$app->getAssetManager();
@@ -76,7 +102,13 @@ class Files extends Component
         return $assetBundle;
     }
 
-    protected function parsePrismName($name)
+    /**
+     * Parses out a prism name into a human readable name
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $name
+     * @return string
+     */
+    protected function parsePrismName(string $name): string
     {
         $name = explode('-', $name);
 
@@ -87,7 +119,15 @@ class Files extends Component
         return ucwords(implode(' ', $name));
     }
 
-    public function getFiles($dir, $options = [], $regexp = '')
+    /**
+     * Returns all files matching the passed filters
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $dir     Directory to search
+     * @param  array  $options Options including closure filters
+     * @param  string $regexp  Regexp to filter files on
+     * @return array           An array of found files
+     */
+    public function getFiles(string $dir, array $options = [], string $regexp = ''): array
     {
         try {
             $baseFiles = $this->getEditorFiles($dir, $options);
@@ -112,13 +152,27 @@ class Files extends Component
         return $files;
     }
 
-    protected function getEditorFiles($filepath, $options = [])
+    /**
+     * Returns editor files
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $filepath
+     * @param  array  $options
+     * @return array
+     */
+    protected function getEditorFiles(string $filepath, array $options = []): array
     {
         $files = FileHelper::findFiles(Craft::getAlias($filepath), $options);
         return $files ?? [];
     }
 
-    private function _convertToAliasedPaths(string $alias, array $files)
+    /**
+     * Converts paths to Yii aliases
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $alias
+     * @param  array  $files
+     * @return array
+     */
+    private function _convertToAliasedPaths(string $alias, array $files): array
     {
         foreach ($files as $i => $file) {
 

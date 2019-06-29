@@ -56,11 +56,11 @@ class PrismSyntaxHighlighting extends Component
      * Data is returned in the following format:
      *     {{Internal Definition}} => {{Display Title}}
      *
-     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @author Josh Smith <me@joshsmith.dev>
      * @param  string $type Type of definition to return
      * @return array        An array of Prism definitions
      */
-    public function getDefinitions($type = '')
+    public function getDefinitions(string $type = ''): array
     {
         if( empty($type) ) return [];
 
@@ -75,11 +75,11 @@ class PrismSyntaxHighlighting extends Component
      * Optionally returns a segment of the config, specified by a key
      * User config settings are automatically merged into the default config
      *
-     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @author Josh Smith <me@joshsmith.dev>
      * @param  string $key Key of a segment to return
      * @return array       Config array
      */
-    public function getConfig($key = '')
+    public function getConfig(string $key = '')
     {
     	if( empty($this->config) ){
 			$defaultConfig = $this->loadDefaultConfig();
@@ -95,14 +95,14 @@ class PrismSyntaxHighlighting extends Component
 
     /**
      * Returns the prism JSON definitions
-     * @author Josh Smith <josh.smith@platocreative.co.nz>
+     * @author Josh Smith <me@joshsmith.dev>
      * @return Object
      */
-    public function getPrismDefinitions($key = '')
+    public function getPrismDefinitions(string $key = '')
     {
         if( empty($this->prismDefinitions) ){
             try {
-                $this->prismDefinitions = $this->loadPrimDefinitions();
+                $this->prismDefinitions = $this->loadPrismDefinitions();
             } catch (\Exception $e) {
                 return [];
             }
@@ -114,7 +114,40 @@ class PrismSyntaxHighlighting extends Component
         return [];
     }
 
-    public function getLanguageDefinitionRequirements(string $definition = '', &$definitions = [])
+    /**
+     * Parses custom theme definitions, added via a user config file
+     * All we do here is strip out wildcard definitions, and auto add a title if not specified
+     *
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  array  $definitions An array of theme definitions
+     * @return array
+     */
+    public function parseCustomThemeDefinitions(array $definitions = []): array
+    {
+        // Auto set the title if only a handle is defined
+        foreach ($definitions as $name => $title) {
+
+            if( $title === '*' ) unset($definitions[$name]); // Remove the all parameter
+
+            if( is_numeric($name) && $title !== '*' ){ // Ignore the All parameter
+                unset($definitions[$name]);
+                $definitions[$title] = ucwords(implode(' ', explode('-', $title)));
+            }
+        }
+
+        return $definitions;
+    }
+
+    /**
+     * Returns language definition requirements from the Prism components file
+     * Recursively loads all JS dependencies for each language (if any)
+     *
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  string $definition   A language definition
+     * @param  array  &$definitions An array of currently loaded requirements
+     * @return array                An array of definition requirements
+     */
+    public function getLanguageDefinitionRequirements(string $definition = '', array &$definitions = []): array
     {
         $languagesDefinitions = $this->getPrismDefinitions('languages');
         $languageDefinitions = $languagesDefinitions->$definition ?? [];
@@ -135,17 +168,34 @@ class PrismSyntaxHighlighting extends Component
         return array_reverse($definitions);
     }
 
-    protected function loadPrimDefinitions()
+    /**
+     * Returns a decoded components JSON object
+     * @author Josh Smith <me@joshsmith.dev>
+     * @return object
+     */
+    protected function loadPrismDefinitions()
     {
         return json_decode(file_get_contents(Craft::getAlias(self::$componentsDefinitionFile)));
     }
 
-    protected function loadDefaultConfig()
+    /**
+     * Loads the default plugin config
+     * This should probably be loaded by the plugin class, but it's only really used here for now
+     *
+     * @author Josh Smith <me@joshsmith.dev>
+     * @return array
+     */
+    protected function loadDefaultConfig(): array
     {
     	return require Craft::getAlias(self::$configFile);
     }
 
-    protected function loadUserConfig()
+    /**
+     * Loads a user config override sitting in CraftCMS
+     * @author Josh Smith <me@joshsmith.dev>
+     * @return array
+     */
+    protected function loadUserConfig(): array
     {
     	$configFile = CRAFT_BASE_PATH.'/config/'.self::CONFIG_FILENAME.'.php';
 
@@ -156,7 +206,16 @@ class PrismSyntaxHighlighting extends Component
     	return [];
     }
 
-    protected function parseDefinitions(array $config, object $themeDefinitions)
+    /**
+     * Parses out definitions from the Prism components JSON object
+     * Typically this will just parse out a title
+     *
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  array  $config
+     * @param  object $themeDefinitions
+     * @return array
+     */
+    protected function parseDefinitions(array $config, object $themeDefinitions): array
     {
         // Remove the meta property, it's not required.
         unset($themeDefinitions->meta);
@@ -174,7 +233,13 @@ class PrismSyntaxHighlighting extends Component
         return $this->_parseDefinitions($definitions);
     }
 
-    private function _parseDefinitions(array $definitions = [])
+    /**
+     * Parses out definition titles
+     * @author Josh Smith <me@joshsmith.dev>
+     * @param  array  $definitions
+     * @return array
+     */
+    private function _parseDefinitions(array $definitions = []): array
     {
         $parsedDefinitions = [];
         foreach ($definitions as $key => $value) {
