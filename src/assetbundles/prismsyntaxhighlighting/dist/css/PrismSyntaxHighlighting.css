@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2019 Josh Smith <me@joshsmith.dev>
  * @link      https://www.joshsmith.dev
  * @package   PrismSyntaxHighlighting
- * @since     1.0.0
+ * @since     1.0.1
  */
 .prism-syntax-highlighter {
 	outline: none;
@@ -27,7 +27,8 @@
 	line-height: inherit;
 	text-shadow: none;
 	background: transparent;
-  color: inherit;
+  	color: inherit;
+  	box-shadow: inherit;
 }
 
 pre[class*="language-"].prism-syntax-highlighter.line-numbers {

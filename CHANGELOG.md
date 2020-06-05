@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.1 - 2020-06-05
+### Fixed
+- Fixed a styling issue with tokens that was introduced in Craft 3.4.x.
+
 ## 1.0.0 - 2019-06-26
 ### Added
 - Initial release
