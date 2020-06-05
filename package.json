@@ -4,14 +4,14 @@
   "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
   "main": "index.js",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "babel-loader": "^8.0.6",
-    "copy-webpack-plugin": "^5.0.3",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^5.1.1",
     "css-wrap": "^0.1.0",
     "uglifycss": "0.0.29",
-    "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
     "dev": "webpack --config webpack.config.js --mode=development",

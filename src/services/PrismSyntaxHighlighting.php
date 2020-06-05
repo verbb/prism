@@ -21,7 +21,7 @@ class PrismSyntaxHighlighting extends Component
     const CONFIG_FILENAME = 'prismsyntaxhighlighting';
 
     /**
-     * The intenral path to the plugin config file
+     * The internal path to the plugin config file
      * @var string
      */
     public static $configFile = '@thejoshsmith/prismsyntaxhighlighting/config/'.self::CONFIG_FILENAME.'.php';
@@ -215,7 +215,7 @@ class PrismSyntaxHighlighting extends Component
      * @param  object $themeDefinitions
      * @return array
      */
-    protected function parseDefinitions(array $config, object $themeDefinitions): array
+    protected function parseDefinitions(array $config, $themeDefinitions): array
     {
         // Remove the meta property, it's not required.
         unset($themeDefinitions->meta);
