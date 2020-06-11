@@ -12,8 +12,8 @@ use Craft;
 use craft\base\Component;
 use yii\helpers\FileHelper;
 use yii\web\AssetBundle;
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\PrismSyntaxHighlighting\PrismJsThemeAsset;
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\PrismSyntaxHighlighting\PrismJsLanguageAsset;
+use thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting\PrismJsThemeAsset;
+use thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting\PrismJsLanguageAsset;
 use thejoshsmith\prismsyntaxhighlighting\Plugin;
 
 /**

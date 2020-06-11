@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2019 Josh Smith <me@joshsmith.dev>
  */
 
-namespace thejoshsmith\prismsyntaxhighlighting\assetbundles\PrismSyntaxHighlighting;
+namespace thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting;
 
 use Craft;
 use craft\web\AssetBundle;
