@@ -24,6 +24,8 @@ use craft\events\PluginEvent;
 use craft\services\Fields;
 use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterComponentTypesEvent;
+use craft\web\View;
+use craft\events\TemplateEvent;
 
 use yii\base\Event;
 
@@ -71,6 +73,23 @@ class Plugin extends CraftPlugin
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function (RegisterComponentTypesEvent $event) {
                 $event->types[] = PrismSyntaxHighlightingField::class;
+            }
+        );
+
+        Event::on(
+            View::class,
+            View::EVENT_BEFORE_RENDER_TEMPLATE,
+            function(TemplateEvent $event) {
+                if( !Craft::$app->getRequest()->getIsCpRequest() ) return;
+
+                $assetBundles =& $event->sender->assetBundles;
+                $prismJsAsset = 'craft\\web\\assets\\prismjs\\PrismJsAsset';
+
+                // Prevent Craft from loading the CMS version of PrismJS.
+                // We make sure to load the languages Craft requires in the Plugin.
+                if( array_key_exists($prismJsAsset, $assetBundles) ){
+                    $assetBundles[$prismJsAsset]->js = [];
+                }
             }
         );
 

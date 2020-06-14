@@ -21,6 +21,12 @@ class PrismSyntaxHighlighting extends Component
     const CONFIG_FILENAME = 'prismsyntaxhighlighting';
 
     /**
+     * Define the languages required by the CraftCMS CP
+     * @var array
+     */
+    const CRAFTCMS_CP_LANGUAGES = ['markup', 'javascript', 'json'];
+
+    /**
      * The internal path to the plugin config file
      * @var string
      */
