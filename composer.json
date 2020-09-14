@@ -2,7 +2,7 @@
     "name": "thejoshsmith/craft-prism-syntax-highlighting",
     "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
     "type": "craft-plugin",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "keywords": [
         "craft",
         "cms",
