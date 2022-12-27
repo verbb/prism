@@ -1,108 +1,83 @@
 <?php
-/**
- * Prism Syntax Highlighting - Files Service
- *
- * @link      https://www.joshsmith.dev
- * @copyright Copyright (c) 2019 Josh Smith
- */
+namespace verbb\prism\services;
 
-namespace thejoshsmith\prismsyntaxhighlighting\services;
+use verbb\prism\Prism;
+use verbb\prism\assetbundles\field\PrismJsThemeAsset;
+use verbb\prism\assetbundles\field\PrismJsLanguageAsset;
+use verbb\prism\services\Service;
 
 use Craft;
 use craft\base\Component;
+
 use yii\helpers\FileHelper;
 use yii\web\AssetBundle;
 
-use thejoshsmith\prismsyntaxhighlighting\Plugin;
-use thejoshsmith\prismsyntaxhighlighting\services\PrismSyntaxHighlighting;
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting\PrismJsThemeAsset;
-use thejoshsmith\prismsyntaxhighlighting\assetbundles\prismsyntaxhighlighting\PrismJsLanguageAsset;
-
-/**
- * Prism Syntax highlighting Files Service
- * @author    Josh Smith
- * @package   Prism Syntax Highlighting
- * @since     1.0.0
- */
 class Files extends Component
 {
-    /**
-     * Constant filepaths
-     * @var string
-     */
-    const PRISM_THEMES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/css/prism/themes';
-    const PRISM_LANGUAGES_DIR = '@thejoshsmith/prismsyntaxhighlighting/assetbundles/prismsyntaxhighlighting/dist/js/prism/components';
+    // Constants
+    // =========================================================================
 
-    /**
-     * Returns a fully qualified filepath for the passed filename
-     * Optionally searches in a custom specified directory (for user files)
-     *
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $filename
-     * @param  string $dir
-     * @param  string $customDir
-     * @return string
-     */
-    public function getEditorFile(string $filename, string $dir,  string $customDir = ''): string
+    const PRISM_THEMES_DIR = '@verbb/prism/resources/dist/css/prism/themes';
+    const PRISM_LANGUAGES_DIR = '@verbb/prism/resources/dist/js/prism/components';
+
+
+    // Public Methods
+    // =========================================================================
+
+    public function getEditorFile(string $filename, string $dir, string $customDir = ''): string
     {
         // Define a file filter
-        $filter = function($file) use($filename){ return basename($file) === $filename; };
+        $filter = function($file) use ($filename) {
+            return basename($file) === $filename;
+        };
 
         // Attempt to get a vendor file
         $files = $this->getEditorFiles($dir, ['filter' => $filter]);
         $files = $this->_convertToAliasedPaths($dir, $files);
 
-        if( !empty($files) || empty($customDir) ) return $files[0] ?? '';
+        if (!empty($files) || empty($customDir)) {
+            return $files[0] ?? '';
+        }
 
         // Check custom directories...
         $customFiles = $this->getEditorFiles($customDir, ['filter' => $filter]);
-        if( empty($customFiles) ) return '';
+        if (empty($customFiles)) {
+            return '';
+        }
 
         return $customFiles[0];
     }
 
-    /**
-     * Returns a theme asset bundle
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $filename
-     * @return AssetBundle
-     */
     public function registerEditorThemeAssetBundle(string $filename)
     {
-        $am = Craft::$app->getAssetManager();
+        $assetManager = Craft::$app->getAssetManager();
 
         $themeAssetBundle = Craft::$app->getView()->registerAssetBundle(PrismJsThemeAsset::class);
         $themeAssetBundle->sourcePath = str_replace(basename($filename), '', $filename);
         $themeAssetBundle->css[] = basename($filename);
         $themeAssetBundle->init();
-        $themeAssetBundle->publish($am);
+        $themeAssetBundle->publish($assetManager);
 
         return $themeAssetBundle;
     }
 
-    /**
-     * Returns a languages asset bundle
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  array $files
-     * @return AssetBundle
-     */
     public function registerEditorLanguageAssetBundle(array $files)
     {
-        $am = Craft::$app->getAssetManager();
+        $assetManager = Craft::$app->getAssetManager();
 
         $assetBundle = Craft::$app->getView()->registerAssetBundle(PrismJsLanguageAsset::class);
         $assetBundle->sourcePath = self::PRISM_LANGUAGES_DIR;
 
         // Load Craft required CP languages
-        if( Craft::$app->getRequest()->getIsCpRequest() ) {
+        if (Craft::$app->getRequest()->getIsCpRequest()) {
             $craftCpLanguages = [];
-            foreach (PrismSyntaxHighlighting::CRAFTCMS_CP_LANGUAGES as $file) {
-                $filename = 'prism-'.$file.'.min.js';
-                $craftCpLanguages[] = $this->getEditorFile(
-                    $filename,
-                    self::PRISM_LANGUAGES_DIR
-                );
+
+            foreach (Service::CRAFTCMS_CP_LANGUAGES as $file) {
+                $filename = 'prism-' . $file . '.min.js';
+                
+                $craftCpLanguages[] = $this->getEditorFile($filename, self::PRISM_LANGUAGES_DIR);
             }
+
             $files = array_unique(array_merge($files, $craftCpLanguages));
         }
 
@@ -111,48 +86,23 @@ class Files extends Component
         }
 
         $assetBundle->init();
-        $assetBundle->publish($am);
+        $assetBundle->publish($assetManager);
 
         return $assetBundle;
     }
 
-    /**
-     * Parses out a prism name into a human readable name
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $name
-     * @return string
-     */
-    protected function parsePrismName(string $name): string
-    {
-        $name = explode('-', $name);
-
-        if( count($name) > 1 ){
-            array_shift($name);
-        }
-
-        return ucwords(implode(' ', $name));
-    }
-
-    /**
-     * Returns all files matching the passed filters
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $dir     Directory to search
-     * @param  array  $options Options including closure filters
-     * @param  string $regexp  Regexp to filter files on
-     * @return array           An array of found files
-     */
     public function getFiles(string $dir, array $options = [], string $regexp = ''): array
     {
         try {
             $baseFiles = $this->getEditorFiles($dir, $options);
         } catch (\yii\base\InvalidArgumentException $iae) {
-            Craft::$app->getSession()->setError(Craft::t('app', 'Couldn’t load files in \''.$dir.'\'.'));
+            Craft::$app->getSession()->setError(Craft::t('app', "Couldn’t load files in $dir."));
             $baseFiles = [];
         }
 
         $files = [];
-        foreach ($baseFiles as $file) {
 
+        foreach ($baseFiles as $file) {
             $baseFile = basename($file);
 
             // Parse the theme name
@@ -163,40 +113,46 @@ class Files extends Component
         }
 
         ksort($files);
+
         return $files;
     }
 
-    /**
-     * Returns editor files
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $filepath
-     * @param  array  $options
-     * @return array
-     */
+
+    // Protected Methods
+    // =========================================================================
+
+    protected function parsePrismName(string $name): string
+    {
+        $name = explode('-', $name);
+
+        if (count($name) > 1) {
+            array_shift($name);
+        }
+
+        return ucwords(implode(' ', $name));
+    }
+
     protected function getEditorFiles(string $filepath, array $options = []): array
     {
         $files = FileHelper::findFiles(Craft::getAlias($filepath), $options);
+
         return $files ?? [];
     }
 
-    /**
-     * Converts paths to Yii aliases
-     * @author Josh Smith <me@joshsmith.dev>
-     * @param  string $alias
-     * @param  array  $files
-     * @return array
-     */
+
+    // Private Methods
+    // =========================================================================
+
     private function _convertToAliasedPaths(string $alias, array $files): array
     {
         foreach ($files as $i => $file) {
-
             // Determine if the aliased filepath is different
             $aliasPath = Craft::getAlias($alias);
             $replacedFile = str_replace($aliasPath, '', $file);
 
             // If so, replace the filepath with the alias
-            if( strlen($replacedFile) !== $file ){
-                $files[$i] = $alias.$replacedFile;
+            if (strlen($replacedFile) !== $file) {
+                $files[$i] = $alias . $replacedFile;
             }
         }
 

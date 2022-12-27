@@ -1,8 +1,8 @@
 {
-    "name": "thejoshsmith/craft-prism-syntax-highlighting",
+    "name": "verbb/prism",
     "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
     "type": "craft-plugin",
-    "version": "1.0.5",
+    "version": "2.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -13,33 +13,39 @@
         "highlighting"
     ],
     "support": {
-        "docs": "https://github.com/thejoshsmith/prism-syntax-highlighting/blob/master/README.md",
-        "issues": "https://github.com/thejoshsmith/prism-syntax-highlighting/issues"
+        "email": "support@verbb.io",
+        "issues": "https://github.com/verbb/prism/issues?state=open",
+        "source": "https://github.com/verbb/prism",
+        "docs": "https://github.com/verbb/prism",
+        "rss": "https://github.com/verbb/prism/commits/v2.atom"
     },
     "license": "MIT",
     "authors": [
+        {
+            "name": "Verbb",
+            "homepage": "https://verbb.io"
+        },
         {
             "name": "Josh Smith <me@joshsmith.dev>",
             "homepage": "https://www.joshsmith.dev"
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1"
-    },
-    "autoload": {
-        "psr-4": {
-          "thejoshsmith\\prismsyntaxhighlighting\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "Prism Syntax Highlighting",
-        "handle": "craft-prism-syntax-highlighting",
-        "hasCpSettings": true,
-        "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/thejoshsmith/prism-syntax-highlighting/master/CHANGELOG.md",
-        "class": "thejoshsmith\\prismsyntaxhighlighting\\Plugin"
+        "craftcms/cms": "^3.7.0",
+        "verbb/base": "^1.0.2"
     },
     "require-dev": {
         "prismjs/prism": "^1.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "verbb\\prism\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Prism",
+        "handle": "prism",
+        "changelogUrl": "https://raw.githubusercontent.com/verbb/prism/craft-3/CHANGELOG.md",
+        "class": "verbb\\prism\\Prism"
     }
 }

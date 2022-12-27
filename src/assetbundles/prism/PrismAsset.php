@@ -1,0 +1,23 @@
+<?php
+namespace verbb\prism\assetbundles\prism;
+
+use craft\web\AssetBundle;
+use craft\web\assets\cp\CpAsset;
+
+use verbb\base\assetbundles\CpAsset as VerbbCpAsset;
+
+class PrismAsset extends AssetBundle
+{
+    // Public Methods
+    // =========================================================================
+
+    public function init()
+    {
+        $this->depends = [
+            VerbbCpAsset::class,
+            CpAsset::class,
+        ];
+
+        parent::init();
+    }
+}

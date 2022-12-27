@@ -1,0 +1,82 @@
+{% extends 'prism/_layouts' %}
+{% import '_includes/forms' as forms %}
+
+{% set crumbs = [
+    { label: 'Prism' | t('prism'), url: url('prism/settings') },
+    { label: 'Settings' | t('app'), url: url('prism/settings') }
+] %}
+
+{% set selectedTab = 'settings' %}
+{% set fullPageForm = true %}
+
+{% block blockContent %}
+
+<input type="hidden" name="action" value="plugins/save-plugin-settings">
+<input type="hidden" name="pluginHandle" value="prism">
+
+{% namespace 'settings' %}
+
+<h2>{{ 'General Settings' | t('prism') }}</h2>
+<p>{{ 'Configure the default syntax highlighting options' | t('prism') }}</p>
+
+{{ forms.selectField({
+    label: 'Theme' | t('prism'),
+    instructions: 'Choose an editor theme.' | t('prism'),
+    id: 'editorTheme',
+    name: 'editorTheme',
+    value: settings.editorTheme,
+    options: settings.getEditorThemes(),
+}) }}
+
+{{ forms.selectField({
+    label: 'Syntax' | t('prism'),
+    instructions: 'Choose a default syntax to highlight text with.' | t('prism'),
+    id: 'editorLanguage',
+    name: 'editorLanguage',
+    value: settings.editorLanguage,
+    options: settings.getEditorLanguages(),
+}) }}
+
+{{ forms.textField({
+    label: 'Height' | t('prism'),
+    instructions: 'Set the default number of rows the editor will be displayed at.' | t('prism'),
+    id: 'editorHeight',
+    name: 'editorHeight',
+    value: settings.editorHeight,
+}) }}
+
+{{ forms.textField({
+    label: 'Tab Width' | t('prism'),
+    instructions: 'Set the tab width. This uses the experimental CSS property `tab-size`.' | t('prism'),
+    id: 'editorTabWidth',
+    name: 'editorTabWidth',
+    value: settings.editorTabWidth,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Line Numbers' | t('prism'),
+    instructions: 'Choose whether line numbers are displayed or not.' | t('prism'),
+    id: 'editorLineNumbers',
+    name: 'editorLineNumbers',
+    on: settings.editorLineNumbers,
+}) }}
+
+<hr>
+
+<h2>{{ 'Custom Settings' | t('prism') }}</h2>
+<p>{{ 'Set a directory path for your custom CSS. You‘ll need to edit the plugin config to set which custom themes are selectable.' | t('prism') }}</p>
+
+{{ forms.autosuggestField({
+    label: 'Theme Directory' | t('prism'),
+    instructions: 'The path to the theme directory where your custom CSS files are located.' | t('prism'),
+    id: 'customThemesDir',
+    name: 'customThemesDir',
+    suggestEnvVars: true,
+    suggestAliases: true,
+    value: settings.customThemesDir,
+    placeholder: '/path/to/css/folder' | t('prism'),
+}) }}
+
+{% endnamespace %}
+
+{% endblock %}

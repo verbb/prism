@@ -1,28 +1,14 @@
 <?php
-/**
- * Prism Syntax Highlighting plugin for Craft CMS 3.x
- *
- * Adds a new field type that provides syntax highlighting capabilities using PrismJS.
- *
- * @link      https://www.joshsmith.dev
- * @copyright Copyright (c) 2019 Josh Smith <me@joshsmith.dev>
- */
+namespace verbb\prism\models;
 
-namespace thejoshsmith\prismsyntaxhighlighting\models;
-
-use thejoshsmith\prismsyntaxhighlighting\Plugin;
+use verbb\prism\Prism;
 
 use Craft;
 use craft\base\Model;
 
-/**
- * @author    Josh Smith <me@joshsmith.dev>
- * @package   PrismSyntaxHighlighting
- * @since     1.0.0
- */
 class Settings extends Model
 {
-    // Public Properties
+    // Properties
     // =========================================================================
 
     /**
@@ -65,44 +51,38 @@ class Settings extends Model
      */
     public $customThemesDir = '';
 
+
     // Public Methods
     // =========================================================================
 
-    /**
-     * Returns an array of editor themes for the twig templates
-     * @author Josh Smith <me@joshsmith.dev>
-     * @return array
-     */
     public function getEditorThemes()
     {
         $userThemes = [];
-        $themes = Plugin::$plugin->prismService->getDefinitions('themes');
+        $themes = Prism::$plugin->getService()->getDefinitions('themes');
 
-        if( !empty($this->customThemesDir) ){
-            $prismConfig = Plugin::$plugin->prismService->getConfig('themes');
+        if (!empty($this->customThemesDir)) {
+            $prismConfig = Prism::$plugin->getService()->getConfig('themes');
             $userThemes = array_diff_key($prismConfig, $themes);
-            $userThemes = Plugin::$plugin->prismService->parseCustomThemeDefinitions($userThemes);
+            $userThemes = Prism::$plugin->getService()->parseCustomThemeDefinitions($userThemes);
         }
 
         return array_merge($themes, $userThemes);
     }
 
-    /**
-     * Returns an array of editor languages for the twig templates
-     * @author Josh Smith <me@joshsmith.dev>
-     * @return array
-     */
     public function getEditorLanguages()
     {
-        return Plugin::$plugin->prismService->getDefinitions('languages');
+        return Prism::$plugin->getService()->getDefinitions('languages');
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+
+    // Protected Methods
+    // =========================================================================
+
+    protected function defineRules(): array
     {
-        return [
+        $rules = parent::defineRules();
+
+        $rules = array_merge($rules, [
             ['editorTheme', 'string'],
             ['editorLanguage', 'string'],
             ['editorHeight', 'string'],
@@ -111,7 +91,10 @@ class Settings extends Model
             ['editorTabWidth', 'default', 'value' => '4'],
             ['editorLineNumbers', 'boolean'],
             ['editorLineNumbers', 'default', 'value' => false],
-            ['customThemesDir', 'string']
-        ];
+            ['customThemesDir', 'string'],
+        ]);
+
+        return $rules;
     }
+
 }

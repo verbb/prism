@@ -1,0 +1,45 @@
+{% import '_includes/forms' as forms %}
+
+{% do view.registerAssetBundle('verbb\\prism\\assetbundles\\field\\PrismAsset') %}
+
+{{ forms.selectField({
+    label: 'Theme' | t('prism'),
+    instructions: 'Choose an editor theme.' | t('prism'),
+    id: 'editorTheme',
+    name: 'editorTheme',
+    value: field.editorTheme,
+    options: settings.getEditorThemes(),
+}) }}
+
+{{ forms.selectField({
+    label: 'Syntax' | t('prism'),
+    instructions: 'Choose a syntax to highlight text with.' | t('prism'),
+    id: 'editorLanguage',
+    name: 'editorLanguage',
+    value: field.editorLanguage,
+    options: settings.getEditorLanguages(),
+}) }}
+
+{{ forms.textField({
+    label: 'Height' | t('prism'),
+    instructions: 'Set the number of rows the editor will be displayed at.' | t('prism'),
+    id: 'editorHeight',
+    name: 'editorHeight',
+    value: field.editorHeight,
+}) }}
+
+{{ forms.textField({
+    label: 'Tab Width' | t('prism'),
+    instructions: 'Set the tab width. This uses the experimental CSS property `tab-size`.' | t('prism'),
+    id: 'editorTabWidth',
+    name: 'editorTabWidth',
+    value: field.editorTabWidth,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Line Numbers' | t('prism'),
+    instructions: 'Choose whether line numbers are displayed or not.' | t('prism'),
+    id: 'editorLineNumbers',
+    name: 'editorLineNumbers',
+	on: field.editorLineNumbers,
+}) }}

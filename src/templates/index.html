@@ -1,0 +1,8 @@
+{% extends '_layouts/cp' %}
+
+{% import '_includes/forms' as forms %}
+
+{% do view.registerAssetBundle('verbb\\prism\\assetbundles\\field\\PrismAsset') %}
+
+{% set title = 'Prism Syntax Highlighting' | t('prism') %}
+
