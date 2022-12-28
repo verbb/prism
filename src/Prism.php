@@ -6,14 +6,14 @@ use verbb\prism\fields\PrismField;
 use verbb\prism\models\Settings;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
-use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\events\TemplateEvent;
 use craft\helpers\UrlHelper;
 use craft\services\Fields;
-use craft\services\Plugins;
+use craft\web\assets\prismjs\PrismJsAsset;
 use craft\web\UrlManager;
 use craft\web\View;
 
@@ -61,7 +61,7 @@ class Prism extends Plugin
             }
 
             $assetBundles =& $event->sender->assetBundles;
-            $prismJsAsset = 'craft\\web\\assets\\prismjs\\PrismJsAsset';
+            $prismJsAsset = PrismJsAsset::class;
 
             // Prevent Craft from loading the CMS version of PrismJS.
             // We make sure to load the languages Craft requires in the Plugin.
@@ -80,7 +80,7 @@ class Prism extends Plugin
     // Protected Methods
     // =========================================================================
 
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -89,7 +89,7 @@ class Prism extends Plugin
     // Private Methods
     // =========================================================================
 
-    private function _registerCpRoutes()
+    private function _registerCpRoutes(): void
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
@@ -98,7 +98,7 @@ class Prism extends Plugin
         });
     }
 
-    private function _registerFieldTypes()
+    private function _registerFieldTypes(): void
     {
         Event::on(Fields::class, Fields::EVENT_REGISTER_FIELD_TYPES, function(RegisterComponentTypesEvent $event) {
             $event->types[] = PrismField::class;

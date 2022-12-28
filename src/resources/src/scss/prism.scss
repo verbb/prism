@@ -1,22 +1,22 @@
 .prism-syntax-highlighter code {
     box-shadow: none !important;
-	display: block;
+    display: block;
     overflow: visible;
 }
 
 .prism-syntax-highlighter .token {
-	display: inline;
-	border: none;
-	border-radius: 0;
-	padding: 0;
-	font-size: inherit;
-	line-height: inherit;
-	text-shadow: none;
-	background: transparent;
-  	color: inherit;
-  	box-shadow: inherit;
+    display: inline;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    text-shadow: none;
+    background: transparent;
+    color: inherit;
+    box-shadow: inherit;
 }
 
 pre[class*="language-"].prism-syntax-highlighter.line-numbers {
-	padding-left: 3.8em;
+    padding-left: 3.8em;
 }

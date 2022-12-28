@@ -1,11 +1,11 @@
 <?php
 namespace verbb\prism\services;
 
-use verbb\prism\Prism;
-
 use Craft;
 use craft\base\Component;
 use craft\helpers\Json;
+
+use Exception;
 
 class Service extends Component
 {
@@ -15,12 +15,12 @@ class Service extends Component
     /**
      * @var string
      */
-    const CONFIG_FILENAME = 'prism';
+    public const CONFIG_FILENAME = 'prism';
 
     /**
      * @var array
      */
-    const CRAFTCMS_CP_LANGUAGES = ['clike', 'markup', 'javascript', 'json'];
+    public const CRAFTCMS_CP_LANGUAGES = ['clike', 'markup', 'javascript', 'json'];
 
 
     // Properties
@@ -58,7 +58,7 @@ class Service extends Component
         if (empty($this->prismDefinitions)) {
             try {
                 $this->prismDefinitions = $this->loadPrismDefinitions();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return [];
             }
         }

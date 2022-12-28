@@ -3,18 +3,18 @@
 {% set editorHeight = editorHeight * 21 %}
 
 {% if instructions is defined %}
-	<div class="heading">
-		<div class="instructions">
-			<p>{{ instructions }}</p>
-		</div>
-	</div>
+    <div class="heading">
+        <div class="instructions">
+            <p>{{ instructions }}</p>
+        </div>
+    </div>
 {% endif %}
 
 <div class="js--prism {{ field.getThemeName() }}">
-	<pre spellcheck="false" style="min-height: {{ editorHeight }}px;" class="js--prism-editor prism-syntax-highlighter"><code style="tab-size: {{ editorTabWidth }}; -moz-tab-size: {{ editorTabWidth }}; min-height: {{ editorHeight }}px;" class="{% if editorLanguageClass is defined %}{{ editorLanguageClass }}{% endif %} {% if editorLineNumbers == '1' %}line-numbers{% endif %}" contenteditable>{% if value | length %}{{ value }}{% endif %}</code></pre>
+    <pre spellcheck="false" style="min-height: {{ editorHeight }}px;" class="js--prism-editor prism-syntax-highlighter"><code style="tab-size: {{ editorTabWidth }}; -moz-tab-size: {{ editorTabWidth }}; min-height: {{ editorHeight }}px;" class="{% if editorLanguageClass is defined %}{{ editorLanguageClass }}{% endif %} {% if editorLineNumbers == '1' %}line-numbers{% endif %}" contenteditable>{% if value | length %}{{ value }}{% endif %}</code></pre>
 
     <div class="hidden">
-    	{{ forms.textAreaField({
+        {{ forms.textAreaField({
             class: 'js--prism-textarea',
             id: name,
             name: name,

@@ -7,11 +7,10 @@ use verbb\prism\assetbundles\field\PrismAsset;
 use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
-use craft\helpers\Db;
+use craft\helpers\Html;
 use craft\helpers\Json;
 
 use yii\db\Schema;
-use yii\web\AssetBundle;
 
 class PrismField extends Field
 {
@@ -43,7 +42,7 @@ class PrismField extends Field
     public $editorLanguage = '';
 
     /**
-     * @var string
+     * @var array
      */
     public $editorLanguageFiles = [];
 
@@ -58,7 +57,7 @@ class PrismField extends Field
     public $editorTabWidth = '4';
 
     /**
-     * @var string
+     * @var bool
      */
     public $editorLineNumbers = false;
 
@@ -71,7 +70,7 @@ class PrismField extends Field
         return Schema::TYPE_TEXT;
     }
 
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         $settings = Prism::$plugin->getSettings();
 
@@ -115,14 +114,13 @@ class PrismField extends Field
 
     public function getInputHtml($value, ElementInterface $element = null): string
     {
-        $settings = Prism::$plugin->getSettings();
         $filesService = Prism::$plugin->getFiles();
         $view = Craft::$app->getView();
 
         // Load asset bundles
         $prismAsset = $view->registerAssetBundle(PrismAsset::class);
-        $themeAssetBundle = $filesService->registerEditorThemeAssetBundle($this->editorThemeFile);
-        $languageAssetBundle = $filesService->registerEditorLanguageAssetBundle($this->editorLanguageFiles);
+        $filesService->registerEditorThemeAssetBundle($this->editorThemeFile);
+        $filesService->registerEditorLanguageAssetBundle($this->editorLanguageFiles);
 
         // Register the line numbers plugin js and css
         if ($this->editorLineNumbers) {
@@ -131,7 +129,7 @@ class PrismField extends Field
         }
 
         // Get our id and namespace
-        $id = $view->formatInputId($this->handle);
+        $id = Html::id($this->handle);
         $namespacedId = $view->namespaceInputId($id);
 
         // Variables to pass down to our field JavaScript to let it namespace properly
@@ -158,7 +156,7 @@ class PrismField extends Field
         ]);
     }
 
-    public function getThemeName()
+    public function getThemeName(): string
     {
         return $this->editorTheme;
     }
@@ -185,7 +183,7 @@ class PrismField extends Field
         return $rules;
     }
 
-    protected function getLanguageClass()
+    protected function getLanguageClass(): string
     {
         return 'language-' . $this->editorLanguage;
     }

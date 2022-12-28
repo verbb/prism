@@ -1,14 +1,13 @@
 <?php
 namespace verbb\prism\services;
 
-use verbb\prism\Prism;
 use verbb\prism\assetbundles\field\PrismJsThemeAsset;
 use verbb\prism\assetbundles\field\PrismJsLanguageAsset;
-use verbb\prism\services\Service;
 
 use Craft;
 use craft\base\Component;
 
+use yii\base\InvalidArgumentException;
 use yii\helpers\FileHelper;
 use yii\web\AssetBundle;
 
@@ -17,8 +16,8 @@ class Files extends Component
     // Constants
     // =========================================================================
 
-    const PRISM_THEMES_DIR = '@verbb/prism/resources/dist/css/prism/themes';
-    const PRISM_LANGUAGES_DIR = '@verbb/prism/resources/dist/js/prism/components';
+    public const PRISM_THEMES_DIR = '@verbb/prism/resources/dist/css/prism/themes';
+    public const PRISM_LANGUAGES_DIR = '@verbb/prism/resources/dist/js/prism/components';
 
 
     // Public Methods
@@ -48,7 +47,7 @@ class Files extends Component
         return $customFiles[0];
     }
 
-    public function registerEditorThemeAssetBundle(string $filename)
+    public function registerEditorThemeAssetBundle(string $filename): AssetBundle
     {
         $assetManager = Craft::$app->getAssetManager();
 
@@ -61,7 +60,7 @@ class Files extends Component
         return $themeAssetBundle;
     }
 
-    public function registerEditorLanguageAssetBundle(array $files)
+    public function registerEditorLanguageAssetBundle(array $files): AssetBundle
     {
         $assetManager = Craft::$app->getAssetManager();
 
@@ -95,7 +94,7 @@ class Files extends Component
     {
         try {
             $baseFiles = $this->getEditorFiles($dir, $options);
-        } catch (\yii\base\InvalidArgumentException $iae) {
+        } catch (InvalidArgumentException $iae) {
             Craft::$app->getSession()->setError(Craft::t('app', "Couldn’t load files in $dir."));
             $baseFiles = [];
         }
