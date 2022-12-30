@@ -2,7 +2,7 @@
     "name": "verbb/prism",
     "description": "Adds a new field type that provides syntax highlighting capabilities using PrismJS.",
     "type": "craft-plugin",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -31,8 +31,9 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.7.0",
-        "verbb/base": "^1.0.2"
+        "php": "^8.0.2",
+        "craftcms/cms": "^4.0.0",
+        "verbb/base": "^2.0.0"
     },
     "require-dev": {
         "prismjs/prism": "^1.16"
@@ -45,7 +46,7 @@
     "extra": {
         "name": "Prism",
         "handle": "prism",
-        "changelogUrl": "https://raw.githubusercontent.com/verbb/prism/craft-3/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/verbb/prism/craft-4/CHANGELOG.md",
         "class": "verbb\\prism\\Prism"
     }
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0 - 2022-12-30
+
+### Changed
+- Now requires PHP `8.0.2+`.
+- Now requires Craft `4.0.0+`.
+
 ## 2.0.0 - 2022-12-30
 
 > {note} The plugin’s package name has changed to `verbb/prism`. Prism will need be updated to 2.0 from a terminal, by running `composer require verbb/prism && composer remove thejoshsmith/craft-prism-syntax-highlighting`.
