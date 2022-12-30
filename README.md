@@ -72,7 +72,7 @@ Note: Custom themes must follow these rules:
 Languages are configurable in the same way as themes. Use `['*']` to show all 177 languages, or just list the ones you'd like to show in the config. Custom languages aren't supported at this time, but may be in the future. 
 
 ## Credits
-Originally created by the team at [Josh Smith <me@joshsmith.dev>](https://www.joshsmith.dev).
+Originally created by [Josh Smith <me@joshsmith.dev>](https://www.joshsmith.dev).
 
 ## Show your Support
 Prism is licensed under the MIT license, meaning it will always be free and open source – we love free stuff! If you'd like to show your support to the plugin regardless, [Sponsor](https://github.com/sponsors/verbb) development.
