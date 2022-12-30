@@ -26,40 +26,13 @@ class PrismField extends Field
     // Properties
     // =========================================================================
 
-    /**
-     * @var string
-     */
-    public $editorTheme = '';
-
-    /**
-     * @var string
-     */
-    public $editorThemeFile = '';
-
-    /**
-     * @var string
-     */
-    public $editorLanguage = '';
-
-    /**
-     * @var array
-     */
-    public $editorLanguageFiles = [];
-
-    /**
-     * @var string
-     */
-    public $editorHeight = '4';
-
-    /**
-     * @var string
-     */
-    public $editorTabWidth = '4';
-
-    /**
-     * @var bool
-     */
-    public $editorLineNumbers = false;
+    public string $editorTheme = '';
+    public string $editorThemeFile = '';
+    public string $editorLanguage = '';
+    public array $editorLanguageFiles = [];
+    public string $editorHeight = '4';
+    public string $editorTabWidth = '4';
+    public bool $editorLineNumbers = false;
 
 
     // Public Methods

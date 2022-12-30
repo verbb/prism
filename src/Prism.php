@@ -24,15 +24,8 @@ class Prism extends Plugin
     // Properties
     // =========================================================================
 
-    /**
-     * @var string
-     */
-    public $schemaVersion = '2.0.0';
-
-    /**
-     * @var bool
-     */
-    public $hasCpSettings = true;
+    public string $schemaVersion = '3.0.0';
+    public bool $hasCpSettings = true;
 
 
     // Traits
@@ -71,9 +64,9 @@ class Prism extends Plugin
         });
     }
 
-    public function getSettingsResponse()
+    public function getSettingsResponse(): mixed
     {
-        Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('prism/settings'));
+        return Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('prism/settings'));
     }
 
 

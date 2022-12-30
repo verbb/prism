@@ -12,29 +12,16 @@ class Service extends Component
     // Constants
     // =========================================================================
 
-    /**
-     * @var string
-     */
     public const CONFIG_FILENAME = 'prism';
-
-    /**
-     * @var array
-     */
     public const CRAFTCMS_CP_LANGUAGES = ['clike', 'markup', 'javascript', 'json'];
 
 
     // Properties
     // =========================================================================
 
-    /**
-     * @var string
-     */
-    public static $componentsDefinitionFile = '@verbb/prism/resources/dist/js/prism/components.json';
+    public static string $componentsDefinitionFile = '@verbb/prism/resources/dist/js/prism/components.json';
 
-    /**
-     * @var object
-     */
-    protected $prismDefinitions;
+    protected mixed $prismDefinitions = null;
 
 
     // Public Methods

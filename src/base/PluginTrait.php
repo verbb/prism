@@ -1,6 +1,7 @@
 <?php
 namespace verbb\prism\base;
 
+use verbb\prism\Prism;
 use verbb\prism\services\Files;
 use verbb\prism\services\Service;
 
@@ -15,7 +16,7 @@ trait PluginTrait
     // Static Properties
     // =========================================================================
 
-    public static $plugin;
+    public static Prism $plugin;
 
 
     // Public Methods

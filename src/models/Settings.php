@@ -10,65 +10,25 @@ class Settings extends Model
     // Properties
     // =========================================================================
 
-    /**
-     * @var string
-     */
-    public $editorTheme = '';
-
-    /**
-     * @var string
-     */
-    public $editorLanguage = '';
-
-    /**
-     * @var array
-     */
-    public $editorThemes = [];
-
-    /**
-     * @var array
-     */
-    public $editorLanguages = [];
-
-    /**
-     * @var string
-     */
-    public $editorHeight = '4';
-
-    /**
-     * @var string
-     */
-    public $editorTabWidth = '4';
-
-    /**
-     * @var string
-     */
-    public $editorLineNumbers = false;
-
-    /**
-     * @var string
-     */
-    public $customThemesDir = '';
+    public string $editorTheme = '';
+    public string $editorLanguage = '';
+    public array $editorThemes = [];
+    public array $editorLanguages = [];
+    public string $editorHeight = '4';
+    public string $editorTabWidth = '4';
+    public bool $editorLineNumbers = false;
+    public string $customThemesDir = '';
 
 
     // Public Methods
     // =========================================================================
 
-    public function getEditorThemes()
+    public function getEditorThemes(): array
     {
-        $userThemes = [];
-        $themes = Prism::$plugin->getService()->getDefinitions('themes');
-
-        if (!empty($this->customThemesDir)) {
-            $prismConfig = Prism::$plugin->getService()->getConfig('themes');
-            $userThemes = array_diff_key($prismConfig, $themes);
-            $userThemes = Prism::$plugin->getService()->parseCustomThemeDefinitions($userThemes);
-        }
-
-        return array_merge($themes, $userThemes);
+        return Prism::$plugin->getService()->getDefinitions('themes');
     }
 
-    public function getEditorLanguages()
+    public function getEditorLanguages(): array
     {
         return Prism::$plugin->getService()->getDefinitions('languages');
     }

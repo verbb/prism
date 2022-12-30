@@ -94,7 +94,7 @@ class Files extends Component
     {
         try {
             $baseFiles = $this->getEditorFiles($dir, $options);
-        } catch (InvalidArgumentException $iae) {
+        } catch (InvalidArgumentException $e) {
             Craft::$app->getSession()->setError(Craft::t('app', "Couldn’t load files in $dir."));
             $baseFiles = [];
         }
