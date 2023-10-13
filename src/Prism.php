@@ -24,8 +24,8 @@ class Prism extends Plugin
     // Properties
     // =========================================================================
 
-    public string $schemaVersion = '3.0.0';
     public bool $hasCpSettings = true;
+    public string $schemaVersion = '3.0.0';
 
 
     // Traits
@@ -43,8 +43,6 @@ class Prism extends Plugin
 
         self::$plugin = $this;
 
-        $this->_setPluginComponents();
-        $this->_setLogging();
         $this->_registerCpRoutes();
         $this->_registerFieldTypes();
 

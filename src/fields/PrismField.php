@@ -22,6 +22,11 @@ class PrismField extends Field
         return Craft::t('prism', 'Prism Syntax Highlighting');
     }
 
+    public static function dbType(): string
+    {
+        return Schema::TYPE_TEXT;
+    }
+
 
     // Properties
     // =========================================================================
@@ -37,11 +42,6 @@ class PrismField extends Field
 
     // Public Methods
     // =========================================================================
-
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_TEXT;
-    }
 
     public function getSettingsHtml(): ?string
     {
@@ -85,7 +85,7 @@ class PrismField extends Field
         return parent::beforeSave($isNew);
     }
 
-    public function getInputHtml($value, ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
         $filesService = Prism::$plugin->getFiles();
         $view = Craft::$app->getView();
