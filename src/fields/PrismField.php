@@ -85,6 +85,33 @@ class PrismField extends Field
         return parent::beforeSave($isNew);
     }
 
+    public function getThemeName(): string
+    {
+        return $this->editorTheme;
+    }
+
+
+    // Protected Methods
+    // =========================================================================
+
+    protected function defineRules(): array
+    {
+        $rules = parent::defineRules();
+
+        $rules = array_merge($rules, [
+            ['editorTheme', 'string'],
+            ['editorLanguage', 'string'],
+            ['editorHeight', 'string'],
+            ['editorHeight', 'default', 'value' => '4'],
+            ['editorTabWidth', 'string'],
+            ['editorTabWidth', 'default', 'value' => '4'],
+            ['editorLineNumbers', 'boolean'],
+            ['editorLineNumbers', 'default', 'value' => false],
+        ]);
+
+        return $rules;
+    }
+
     protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
         $filesService = Prism::$plugin->getFiles();
@@ -127,33 +154,6 @@ class PrismField extends Field
             'editorHeight' => $this->editorHeight,
             'editorTabWidth' => $this->editorTabWidth,
         ]);
-    }
-
-    public function getThemeName(): string
-    {
-        return $this->editorTheme;
-    }
-
-
-    // Protected Methods
-    // =========================================================================
-
-    protected function defineRules(): array
-    {
-        $rules = parent::defineRules();
-
-        $rules = array_merge($rules, [
-            ['editorTheme', 'string'],
-            ['editorLanguage', 'string'],
-            ['editorHeight', 'string'],
-            ['editorHeight', 'default', 'value' => '4'],
-            ['editorTabWidth', 'string'],
-            ['editorTabWidth', 'default', 'value' => '4'],
-            ['editorLineNumbers', 'boolean'],
-            ['editorLineNumbers', 'default', 'value' => false],
-        ]);
-
-        return $rules;
     }
 
     protected function getLanguageClass(): string
