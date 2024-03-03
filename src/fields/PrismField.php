@@ -22,6 +22,11 @@ class PrismField extends Field
         return Craft::t('prism', 'Prism Syntax Highlighting');
     }
 
+    public static function icon(): string
+    {
+        return '@verbb/prism/icon-mask.svg';
+    }
+
     public static function dbType(): string
     {
         return Schema::TYPE_TEXT;
