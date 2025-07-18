@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1 - 2025-07-18
+
+### Changed
+- Update English translations.
+- Only admins are now allowed to access plugin settings.
+
 ## 3.0.0 - 2022-12-30
 
 ### Changed
