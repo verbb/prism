@@ -1,4 +1,4 @@
-<p align="center"><img src="https://verbb.imgix.net/plugins/prism/prism-icon.svg" width="100" height="100" alt="Prism icon"></p>
+<p align="center"><img src="https://assets.verbb.io/plugins/prism/prism-icon.svg" width="100" height="100" alt="Prism icon"></p>
 <h1 align="center">Prism for Craft CMS</h1>
 
 Prism is a Craft CMS plugin to provide syntax highlighting capabilities using [prism.js](https://prismjs.com/).
