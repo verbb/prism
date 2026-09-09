@@ -1,25 +1,15 @@
-{% extends 'prism/_layouts' %}
+{% extends 'prism/_layouts/settings' %}
 
 {% import '_includes/forms' as forms %}
+{% import 'verbb-base/_macros' as macros %}
 
-{% requireAdmin %}
-
-{% set crumbs = [
-    { label: 'Prism' | t('prism'), url: url('prism/settings') },
-    { label: 'Settings' | t('app'), url: url('prism/settings') }
-] %}
-
-{% set selectedTab = 'settings' %}
 {% set fullPageForm = true %}
+{% set selectedTab = 'general' %}
+{% set pageTitle = 'General Settings' | t('prism') %}
+{% set pageAction = 'plugins/save-plugin-settings' %}
+{% set pageUrl = 'prism/settings' %}
 
-{% block blockContent %}
-
-<input type="hidden" name="action" value="plugins/save-plugin-settings">
-<input type="hidden" name="pluginHandle" value="prism">
-
-{% namespace 'settings' %}
-
-<h2>{{ 'General Settings' | t('prism') }}</h2>
+{% block settingsContent %}
 <p>{{ 'Configure the default syntax highlighting options' | t('prism') }}</p>
 
 {{ forms.selectField({
@@ -79,7 +69,4 @@
     value: settings.customThemesDir,
     placeholder: '/path/to/css/folder' | t('prism'),
 }) }}
-
-{% endnamespace %}
-
 {% endblock %}
