@@ -1,34 +1,92 @@
 # Configuration
-Create a `prism.php` file under your `/config` directory with the following options available to you. You can also use multi-environment options to change these per environment.
 
-The below shows the defaults already used by Prism, so you don't need to add these options unless you want to modify the values.
+You can customise Prism’s settings using a PHP configuration file. This is optional: each setting has a default, so you only need to include the values you want to change.
+
+To override a setting, create `prism.php` in your Craft project’s `/config` directory and return an array of setting names and values. For example, the following will show line numbers in the editor:
 
 ```php
 <?php
 
 return [
-    '*' => [
-        'editorTheme' => '',
-        'editorLanguage' => '',
-        'editorThemes' => [],
-        'editorLanguages' => [],
-        'editorHeight' => '4',
-        'editorTabWidth' => '4',
-        'editorLineNumbers' => false,
-        'customThemesDir' => '',
-    ],
+    'editorLineNumbers' => true,
 ];
 ```
 
-## Configuration options
-- `editorTheme` - Choose an editor theme.
-- `editorLanguage` - Choose a default syntax to highlight text with.
-- `editorThemes` - A collection of themes available for the field.
-- `editorLanguages` - A collection of languages available for the field.
-- `editorHeight` - Set the default number of rows the editor will be displayed at.
-- `editorTabWidth` - Set the tab width. This uses the experimental CSS property `tab-size`.
-- `editorLineNumbers` - Choose whether line numbers are displayed or not.
-- `customThemesDir` - The path to the theme directory where your custom CSS files are located.
+All other settings keep their defaults. Add any further settings you want to change to the same array. The options below explain the available settings and their defaults.
+
+## Configuration Options
+
+::: reference
+### `editorTheme`
+
+**Type:** `string` · **Default:** `''`
+
+Choose an editor theme.
+:::
+
+
+::: reference
+### `editorLanguage`
+
+**Type:** `string` · **Default:** `''`
+
+Choose a default syntax to highlight text with.
+:::
+
+
+::: reference
+### `editorThemes`
+
+**Type:** `array` · **Default:** `[]`
+
+A collection of themes available for the field.
+:::
+
+
+::: reference
+### `editorLanguages`
+
+**Type:** `array` · **Default:** `[]`
+
+A collection of languages available for the field.
+:::
+
+
+::: reference
+### `editorHeight`
+
+**Type:** `string` · **Default:** `'4'`
+
+Set the default number of rows the editor will be displayed at.
+:::
+
+
+::: reference
+### `editorTabWidth`
+
+**Type:** `string` · **Default:** `'4'`
+
+Set the tab width. This uses the experimental CSS property `tab-size`.
+:::
+
+
+::: reference
+### `editorLineNumbers`
+
+**Type:** `bool` · **Default:** `false`
+
+Choose whether line numbers are displayed or not.
+:::
+
+
+::: reference
+### `customThemesDir`
+
+**Type:** `string` · **Default:** `''`
+
+The path to the theme directory where your custom CSS files are located.
+:::
+
 
 ### Themes
 You can show specific themes by listing the style handles e.g. `['prism-coy','prism-dark']`. Custom themes are specified by adding a key => value entry e.g. `['prism-my-custom-theme' => 'My Custom Title']`.
