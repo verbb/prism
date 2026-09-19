@@ -17,7 +17,7 @@ Prism is a Craft CMS plugin to provide syntax highlighting capabilities using [p
 Visit the [Prism Plugin page](https://verbb.io/craft-plugins/prism) for all documentation, guides, pricing and developer resources.
 
 ## Credit & Thanks
-Originally created by [Josh Smith <me@joshsmith.dev>](https://www.joshsmith.dev).
+Originally created by Josh Smith <me@joshsmith.dev>.
 
 ## Support
 Get in touch with us via the [Prism Support page](https://verbb.io/craft-plugins/prism/support) or by [creating a Github issue](https://github.com/verbb/prism/issues)
