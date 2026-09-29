@@ -4,10 +4,8 @@ Choose from a broad language library and see syntax highlighting as the author t
 
 ## Features
 
-- **Live highlighting:** See language-aware syntax colour while editing the value.
-- **Language library:** Support a wide range of programming and markup syntaxes.
-- **Themes:** Choose a bundled presentation or provide one tailored to the site.
-- **Line numbers:** Give longer examples a familiar code-editor reference.
-- **Editing shortcuts:** Indent and undo without fighting a plain textarea.
-- **Live Preview:** Review code content within Craft’s preview workflow.
-- **Languages and themes:** Select one of the bundled themes or provide a custom theme, and limit the language options to those the content model expects. The field works in Matrix, Super Table, and Live Preview as part of a wider authoring layout.
+- See language-aware syntax colour while editing the value.
+- Support a wide range of programming and markup syntaxes.
+- Choose a bundled presentation or provide one tailored to the site.
+- Give longer examples a familiar code-editor reference.
+- Indent and undo without fighting a plain textarea.
