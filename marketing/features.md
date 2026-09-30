@@ -7,7 +7,7 @@ Prism gives Craft authors a code field that looks and behaves like code. Edit wi
 
 Choose from a broad language library and see syntax highlighting as the author types. Line numbers, indentation shortcuts, undo and redo, configurable tab width, and editor height make the field suitable for more than a one-line snippet.
 
-![PHP code with line numbers and syntax highlighting in a Prism field.](../screenshots/output/feature-tour/prism-field.png)
+![PHP code with line numbers and syntax highlighting in a Prism field.](../screenshots/prism-field.png)
 
 <!-- feature-section-end -->
 

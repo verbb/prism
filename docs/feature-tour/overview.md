@@ -14,6 +14,8 @@ Open an entry and enter a short sample. For example, for an HTML field:
 
 Save the entry and reopen it. The sample should remain editable with the selected syntax highlighting. Editor height, tab width and line numbers affect the editing experience; choose them to suit the snippets your editors will enter.
 
+![Editing highlighted code in a Prism field](../../screenshots/prism-field.png)
+
 ## Display the Stored Code
 
 The field stores text. In the entry's Twig template, render that text inside `pre` and `code` elements:
