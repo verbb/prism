@@ -40,6 +40,7 @@ class Files extends Component
 
         // Check custom directories...
         $customFiles = $this->getEditorFiles($customDir, ['filter' => $filter]);
+
         if (empty($customFiles)) {
             return '';
         }
@@ -73,7 +74,7 @@ class Files extends Component
 
             foreach (Service::CRAFTCMS_CP_LANGUAGES as $file) {
                 $filename = 'prism-' . $file . '.min.js';
-                
+
                 $craftCpLanguages[] = $this->getEditorFile($filename, self::PRISM_LANGUAGES_DIR);
             }
 

@@ -51,7 +51,7 @@ class Prism extends Plugin
                 return;
             }
 
-            $assetBundles =& $event->sender->assetBundles;
+            $assetBundles = & $event->sender->assetBundles;
             $prismJsAsset = PrismJsAsset::class;
 
             // Prevent Craft from loading the CMS version of PrismJS.
