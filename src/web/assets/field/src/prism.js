@@ -1,3 +1,11 @@
+const languageClassPattern = /^language-[\w-]+$/;
+
+Prism.hooks.add('wrap', function(environment) {
+    environment.classes = environment.classes.filter(function(className) {
+        return !className.startsWith('language-') || languageClassPattern.test(className);
+    });
+});
+
 ;(function($){
     $.fn.prismField = function(settings) {
         var $el = $(this).find('code'),
