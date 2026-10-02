@@ -2,7 +2,7 @@
 namespace verbb\prism\fields;
 
 use verbb\prism\Prism;
-use verbb\prism\assetbundles\field\PrismAsset;
+use verbb\prism\web\assets\field\PrismAsset;
 
 use Craft;
 use craft\base\ElementInterface;

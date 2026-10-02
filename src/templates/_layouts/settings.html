@@ -5,7 +5,7 @@
 
 {% requireAdmin %}
 
-{% do view.registerAssetBundle('verbb\\prism\\assetbundles\\prism\\PrismAsset') %}
+{% do view.registerAssetBundle('verbb\\prism\\web\\assets\\cp\\PrismAsset') %}
 
 {% set crumbs = [
     { label: 'Settings' | t('app'), url: url('settings') },

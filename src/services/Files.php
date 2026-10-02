@@ -1,8 +1,8 @@
 <?php
 namespace verbb\prism\services;
 
-use verbb\prism\assetbundles\field\PrismJsThemeAsset;
-use verbb\prism\assetbundles\field\PrismJsLanguageAsset;
+use verbb\prism\web\assets\field\PrismJsLanguageAsset;
+use verbb\prism\web\assets\field\PrismJsThemeAsset;
 
 use Craft;
 use craft\base\Component;
@@ -16,8 +16,8 @@ class Files extends Component
     // Constants
     // =========================================================================
 
-    public const PRISM_THEMES_DIR = '@verbb/prism/resources/dist/css/prism/themes';
-    public const PRISM_LANGUAGES_DIR = '@verbb/prism/resources/dist/js/prism/components';
+    public const PRISM_THEMES_DIR = '@verbb/prism/web/assets/field/dist/css/prism/themes';
+    public const PRISM_LANGUAGES_DIR = '@verbb/prism/web/assets/field/dist/js/prism/components';
 
 
     // Public Methods

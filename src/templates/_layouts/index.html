@@ -1,6 +1,6 @@
 {% extends parentLayout ?? '_layouts/cp' %}
 
-{% do view.registerAssetBundle('verbb\\prism\\assetbundles\\prism\\PrismAsset') %}
+{% do view.registerAssetBundle('verbb\\prism\\web\\assets\\cp\\PrismAsset') %}
 
 {% if title is not defined %}
     {% set title = 'Prism' | t('prism') %}

@@ -19,7 +19,7 @@ class Service extends Component
     // Properties
     // =========================================================================
 
-    public static string $componentsDefinitionFile = '@verbb/prism/resources/dist/js/prism/components.json';
+    public static string $componentsDefinitionFile = '@verbb/prism/web/assets/field/dist/js/prism/components.json';
 
     protected mixed $prismDefinitions = null;
 
