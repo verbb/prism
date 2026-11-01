@@ -81,6 +81,8 @@ class PrismField extends Field
         $editorLanguageFileDefinitions = array_merge($editorLanguageFileRequirements, [$this->editorLanguage]);
 
         // Loop all language requirements and resolve the filepaths
+        $this->editorLanguageFiles = [];
+
         foreach ($editorLanguageFileDefinitions as $file) {
             $filename = 'prism-' . $file . '.min.js';
 

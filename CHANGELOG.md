@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed Prism fields keeping duplicate and outdated language files each time the field was re-saved.
+
 ## 4.0.8 - 2026-10-22
 
 ### Changed
