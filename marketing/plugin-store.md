@@ -7,5 +7,5 @@ Choose from a broad language library and see syntax highlighting as the author t
 - See language-aware syntax colour while editing the value.
 - Support a wide range of programming and markup syntaxes.
 - Choose a bundled presentation or provide one tailored to the site.
-- Give longer examples a familiar code-editor reference.
+- Show line numbers and set the tab width and editor height for longer examples.
 - Indent and undo without fighting a plain textarea.

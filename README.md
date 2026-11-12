@@ -10,20 +10,24 @@ Choose from a broad language library and see syntax highlighting as the author t
 - See language-aware syntax colour while editing the value.
 - Support a wide range of programming and markup syntaxes.
 - Choose a bundled presentation or provide one tailored to the site.
-- Give longer examples a familiar code-editor reference.
+- Show line numbers and set the tab width and editor height for longer examples.
 - Indent and undo without fighting a plain textarea.
 
 ## Documentation
+
 Visit the [Prism Plugin page](https://verbb.io/craft-plugins/prism) for all documentation, guides, pricing and developer resources.
 
 ## Credit & Thanks
+
 Originally created by Josh Smith <me@joshsmith.dev>.
 
 ## Support
-Get in touch with us via the [Prism Support page](https://verbb.io/craft-plugins/prism/support) or by [creating a Github issue](https://github.com/verbb/prism/issues)
+
+Get in touch with us via the [Prism Support page](https://verbb.io/craft-plugins/prism/support) or by [creating a GitHub issue](https://github.com/verbb/prism/issues).
 
 ## Sponsor
-Prism is licensed under the MIT license, meaning it will always be free and open source - we love free stuff! If you'd like to show your support to the plugin regardless, [Sponsor](https://github.com/sponsors/verbb) development.
+
+Prism is licensed under the MIT license, so it will always be free and open source. If you'd like to support it anyway, you can [sponsor its development](https://github.com/sponsors/verbb).
 
 <h2></h2>
 
