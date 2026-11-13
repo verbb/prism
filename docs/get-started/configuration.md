@@ -12,7 +12,7 @@ return [
 ];
 ```
 
-All other settings keep their defaults. Add any further settings you want to change to the same array. The options below explain the available settings and their defaults.
+All other settings keep their defaults. Add any further settings you want to change to the same array. The options below explain the available settings and their defaults. You can also manage many of these settings in the control panel under **Settings → Prism**.
 
 ## Configuration Options
 
@@ -102,6 +102,3 @@ Note: Custom themes must follow these rules:
 
 ### Languages
 Languages are configurable in the same way as themes. Use `['*']` to show all 177 languages, or just list the ones you'd like to show in the config. Custom languages aren't supported at this time, but may be in the future. 
-
-## Control Panel
-You can also manage configuration settings through the Control Panel by visiting Settings → Prism.
